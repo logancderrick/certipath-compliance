@@ -70,30 +70,30 @@ export default function OurServices() {
               <div>
                 <h3 className="text-lg font-bold mb-3">Asia Pacific</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li><Link href="/our-services/asia-pacific/china" className="hover:text-blue-600">China</Link></li>
-                  <li><Link href="/our-services/asia-pacific/india" className="hover:text-blue-600">India</Link></li>
-                  <li><Link href="/our-services/asia-pacific/japan" className="hover:text-blue-600">Japan</Link></li>
-                  <li><Link href="/our-services/asia-pacific/south-korea" className="hover:text-blue-600">South Korea</Link></li>
-                  <li><Link href="/our-services/asia-pacific/southeast-asia" className="hover:text-blue-600">Southeast Asia</Link></li>
-                  <li><Link href="/our-services/asia-pacific/taiwan" className="hover:text-blue-600">Taiwan</Link></li>
-                  <li><Link href="/our-services/asia-pacific/australia-new-zealand" className="hover:text-blue-600">Australia/New Zealand</Link></li>
+                  <li>China</li>
+                  <li>India</li>
+                  <li>Japan</li>
+                  <li>South Korea</li>
+                  <li>Southeast Asia</li>
+                  <li>Taiwan</li>
+                  <li>Australia/New Zealand</li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-3">Americas</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li><Link href="/our-services/americas/united-states-canada" className="hover:text-blue-600">United States & Canada</Link></li>
-                  <li><Link href="/our-services/americas/mexico" className="hover:text-blue-600">Mexico</Link></li>
-                  <li><Link href="/our-services/americas/argentina" className="hover:text-blue-600">Argentina</Link></li>
-                  <li><Link href="/our-services/americas/brazil" className="hover:text-blue-600">Brazil</Link></li>
+                  <li>United States & Canada</li>
+                  <li>Mexico</li>
+                  <li>Argentina</li>
+                  <li>Brazil</li>
                 </ul>
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-3">EMEA</h3>
                 <ul className="space-y-2 text-gray-700">
-                  <li><Link href="/our-services/emea/europe" className="hover:text-blue-600">Europe</Link></li>
-                  <li><Link href="/our-services/emea/eurasia" className="hover:text-blue-600">Eurasia</Link></li>
-                  <li><Link href="/our-services/emea/africa" className="hover:text-blue-600">Africa</Link></li>
+                  <li>Europe</li>
+                  <li>Eurasia</li>
+                  <li>Africa</li>
                 </ul>
               </div>
             </div>

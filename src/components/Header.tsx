@@ -60,31 +60,31 @@ const Header = () => {
 
           {/* Main Navigation */}
           <nav className="hidden lg:block">
-            <ul className="flex space-x-8 text-sm font-medium">
+            <ul className="flex space-x-8 text-sm font-medium items-center">
               <li className="group relative">
-                <button className="hover:text-[var(--primary-color)] flex items-center focus:outline-none">
+                <button className="hover:text-[var(--primary-color)] flex items-center focus:outline-none py-2">
                   Services
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-4 w-4 ml-1">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute left-0 top-full mt-2 w-64 bg-white shadow-lg rounded-md p-4 hidden group-hover:block z-50">
+                <div className="absolute left-0 top-[calc(100%+0.5rem)] w-64 bg-white rounded-lg shadow-lg py-4 px-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <ul className="space-y-2">
                     <li className="font-semibold text-[var(--secondary-color)]">Our Services</li>
-                    <li className="pl-4"><a href="/#services-engineering" className="hover:text-[var(--primary-color)] text-gray-600">Engineering Solution Services</a></li>
-                    <li className="pl-4"><a href="/#services-certifications" className="hover:text-[var(--primary-color)] text-gray-600">Global Product Certifications</a></li>
-                    <li className="pl-4"><a href="/#services-roadmaps" className="hover:text-[var(--primary-color)] text-gray-600">Compliance Roadmaps</a></li>
-                    <li className="pl-4"><a href="/#services-integration" className="hover:text-[var(--primary-color)] text-gray-600">Process Integration</a></li>
-                    <li className="pl-4"><a href="/#services-advisory" className="hover:text-[var(--primary-color)] text-gray-600">Regulatory Advisory Services</a></li>
-                    <li className="pl-4"><a href="/#services-market-access" className="hover:text-[var(--primary-color)] text-gray-600">Market Access Strategy</a></li>
+                    <li className="pl-4"><a href="/#services-engineering" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Engineering Solution Services</a></li>
+                    <li className="pl-4"><a href="/#services-certifications" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Global Product Certifications</a></li>
+                    <li className="pl-4"><a href="/#services-roadmaps" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Compliance Roadmaps</a></li>
+                    <li className="pl-4"><a href="/#services-integration" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Process Integration</a></li>
+                    <li className="pl-4"><a href="/#services-advisory" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Regulatory Advisory Services</a></li>
+                    <li className="pl-4"><a href="/#services-market-access" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Market Access Strategy</a></li>
                     <li className="font-semibold text-[var(--secondary-color)] mt-4">View All Services</li>
-                    <li className="pl-4"><Link href="/our-services" className="hover:text-[var(--primary-color)] text-gray-600">Services Overview</Link></li>
+                    <li className="pl-4"><Link href="/our-services" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Services Overview</Link></li>
                   </ul>
                 </div>
               </li>
-              <li><Link href="/about-us" className="hover:text-[var(--primary-color)]">About Us</Link></li>
-              <li><Link href="/articles" className="hover:text-[var(--primary-color)]">News/Blog</Link></li>
-              <li><Link href="/contact-us" className="hover:text-[var(--primary-color)]">Contact Us</Link></li>
+              <li><Link href="/about-us" className="hover:text-[var(--primary-color)] py-2 block">About Us</Link></li>
+              <li><Link href="/articles" className="hover:text-[var(--primary-color)] py-2 block">News/Blog</Link></li>
+              <li><Link href="/contact-us" className="hover:text-[var(--primary-color)] py-2 block">Contact Us</Link></li>
               <li><Link href="/request-quote" className="bg-[var(--primary-color)] text-white px-4 py-2 rounded hover:bg-[var(--primary-dark)] transition-colors">Quote</Link></li>
             </ul>
           </nav>

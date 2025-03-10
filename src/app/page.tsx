@@ -13,7 +13,6 @@ export default function Home() {
       <AboutSection />
       <ServicesSection />
       <GlobalCertificationsSection />
-      <TestimonialsSection />
       <ProcessSection />
     </>
   );

@@ -7,19 +7,19 @@ const testimonials = [
     id: 1,
     quote: "CertiPath Compliance revolutionized our approach to global market entry. Their strategic methodology identified certification synergies we hadn't considered, allowing us to enter three additional markets with minimal additional testing. Their proactive approach to regulatory monitoring has since helped us stay ahead of compliance changes, turning what was once a bottleneck into a competitive advantage.",
     name: "Alexandra Chen",
-    title: "VP of Product Development, NexGen Devices"
+    title: "VP of Product Development"
   },
   {
     id: 2,
     quote: "What sets CertiPath apart is their integrated approach to compliance. Rather than treating certification as an afterthought, they helped us incorporate regulatory considerations directly into our design process. This forward-thinking strategy reduced our development cycles by nearly 30% and eliminated the costly redesigns we previously experienced when entering new markets.",
     name: "Marcus Rodriguez",
-    title: "Chief Innovation Officer, Quantum Technologies"
+    title: "Chief Innovation Officer"
   },
   {
     id: 3,
     quote: "The depth of expertise at CertiPath Compliance is truly exceptional. Their team's specialized knowledge of emerging markets saved us months of research and prevented several potential compliance pitfalls. Their ability to coordinate testing requirements across multiple certification bodies streamlined what had previously been our most frustrating business process.",
     name: "Priya Sharma",
-    title: "Global Operations Director, Innovate Solutions Ltd."
+    title: "Global Operations Director"
   }
 ];
 
