@@ -98,7 +98,7 @@ const Header = () => {
             <div className="flex justify-center mb-6">
               <Link href="/" className="flex items-center">
                 <Image 
-                  src="/images/Certipath Compliance_logo_b4_cropped.png" 
+                  src="/images/logos/Certipath Compliance_logo_b4_cropped.png" 
                   alt="CertiPath Compliance Logo" 
                   width={140} 
                   height={40} 
