@@ -25,6 +25,7 @@ interface Source {
   contentSelector: string;
   dateSelector: string;
   linkSelector: string;
+  imageSelector: string;
   category: string;
   needsClick: boolean;
 }
@@ -32,25 +33,27 @@ interface Source {
 const sources: Source[] = [
   {
     name: 'In Compliance Magazine',
-    baseUrl: 'https://incompliancemag.com/category/news/',
-    articleSelector: 'article.post',
-    titleSelector: 'h3.entry-title.td-module-title',
-    contentSelector: '.td-post-content',
-    dateSelector: 'time.entry-date',
-    linkSelector: 'h3.entry-title.td-module-title a',
+    baseUrl: 'https://incompliancemag.com/topics/news/',
+    articleSelector: '.td_module_wrap',
+    titleSelector: '.entry-title a',
+    contentSelector: '.td-excerpt',
+    dateSelector: '.entry-date',
+    linkSelector: '.entry-title a',
+    imageSelector: '.entry-thumb',
     category: 'Industry News',
     needsClick: true
   },
   {
     name: 'UL Solutions',
     baseUrl: 'https://www.ul.com/news',
-    articleSelector: '.card--news',
-    titleSelector: 'h2.card__title',
+    articleSelector: '.card.card--news',
+    titleSelector: '.card__title',
     contentSelector: '.card-description',
     dateSelector: '.date',
-    linkSelector: '.card--news a',
+    linkSelector: '.card.card--news a',
+    imageSelector: '.image-container img',
     category: 'Regulatory Updates',
-    needsClick: true
+    needsClick: false
   }
 ];
 
@@ -180,12 +183,13 @@ async function scrapeSource(source: Source) {
       for (const articleElement of articleElements) {
         try {
           const data = await articleElement.evaluate(
-            (el, { titleSelector, contentSelector, dateSelector, linkSelector }) => {
+            (el, { titleSelector, contentSelector, dateSelector, linkSelector, imageSelector }) => {
               const title = el.querySelector(titleSelector)?.textContent?.trim() || '';
               const content = el.querySelector(contentSelector)?.textContent?.trim() || '';
               const date = el.querySelector(dateSelector)?.textContent?.trim() || '';
               const link = (el.querySelector(linkSelector) as HTMLAnchorElement)?.href;
-              return { title, content, date, link };
+              const image = el.querySelector(imageSelector)?.getAttribute('src') || '';
+              return { title, content, date, link, image };
             },
             source
           );

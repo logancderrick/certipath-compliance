@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# " class="js fonts-loaded" data-once="drupal-dialog-deprecation-listener" style="margin-top: 112px;"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
+<html lang="en-US" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/  dc: http://purl.org/dc/terms/  foaf: http://xmlns.com/foaf/0.1/  og: http://ogp.me/ns#  rdfs: http://www.w3.org/2000/01/rdf-schema#  schema: http://schema.org/  sioc: http://rdfs.org/sioc/ns#  sioct: http://rdfs.org/sioc/types#  skos: http://www.w3.org/2004/02/skos/core#  xsd: http://www.w3.org/2001/XMLSchema# " class="js fonts-loaded" data-once="drupal-dialog-deprecation-listener" style="transition-property: none; margin-right: 0px;"><head><style type="text/css">.truste_caIcon_display {display: block !important;}</style><style type="text/css">.truste_cursor_pointer {cursor: pointer;}.truste_border_none {border: none;}</style>
     <meta charset="utf-8">
 <meta name="description" content="Explore our press releases and news updates. Learn about our company and leadership. If it’s UL and newsworthy, it’s here.">
 <meta property="og:site_name" content="UL Solutions">
@@ -47,8 +47,8 @@
 <script src="/modules/custom/ul_salesforce/js/return_link.js?ssaox4"></script>
 
 
-</head>
-<body class="path-node page-node-type-hub" data-once="back-link" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0"><div class="buorg" id="buorg" style="cursor: pointer;"><div class="buorg-pad" role="status" aria-live="polite"><span class="buorg-icon"> </span><b class="buorg-mainmsg">Your web browser (Chrome 120) has a serious security vulnerability!</b> <span class="buorg-moremsg">Update your browser for more security, speed and the best experience on this site.</span> <span class="buorg-buttons"><a id="buorgul" href="https://browser-update.org/update-browser.html#3.3.57:www.ul.com" target="_blank" rel="noopener">Update browser</a> <a id="buorgig" role="button" tabindex="0">Ignore</a></span></div><style>.buorg-icon {width: 22px; height: 16px; vertical-align: middle; position: relative; top: -0.05em; display: inline-block; background: no-repeat 0px center url(https://browser-update.org/static/img/small/c.png);}</style><style>.buorg {position:absolute;position:fixed;z-index:111111; width:100%; top:0px; left:0px; border-bottom:1px solid #A29330; text-align:center;  color:#000; background-color: #fff8ea; font: 18px Calibri,Helvetica,sans-serif; box-shadow: 0 0 5px rgba(0,0,0,0.2);animation: buorgfly 1s ease-out 0s;}.buorg-pad { padding: 9px;  line-height: 1.7em; }.buorg-buttons { display: block; text-align: center; }#buorgig,#buorgul,#buorgpermanent { color: #fff; text-decoration: none; cursor:pointer; box-shadow: 0 0 2px rgba(0,0,0,0.4); padding: 1px 10px; border-radius: 4px; font-weight: normal; background: #5ab400;    white-space: nowrap;    margin: 0 2px; display: inline-block;}#buorgig { background-color: #edbc68;}@media only screen and (max-width: 700px){.buorg div { padding:5px 12px 5px 9px; line-height: 1.3em;}}@keyframes buorgfly {from {opacity:0;transform:translateY(-50px)} to {opacity:1;transform:translateY(0px)}}.buorg-fadeout {transition: visibility 0s 8.5s, opacity 8s ease-out .5s;}</style></div>
+<style id="ReanimatedPredefinedWebAnimationsStyle"></style><style id="ReanimatedCustomWebAnimationsStyle"></style><script src="https://acsbapp.com/apps/app/dist/js/app.js" async=""></script><link id="embeddedMessagingBootstrapStyles" href="https://ulenterpriseorg.my.site.com/ESWULDigitalAssistantE1715867975271/assets/styles/bootstrap.min.css" type="text/css" rel="stylesheet"></head><div data-klarna-plugin-views-container=""></div>
+<body class="path-node page-node-type-hub" data-once="back-link" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0"><span role="alert" data-acsb-sr-alert="true" data-acsb-sr-only="true" class="acsb-sr-alert acsb-sr-only" data-acsb-force-visible="true" style="position: absolute; width: 200px; height: 1px; margin-top: -1px; z-index: -1; border: 0px; top: 0px; left: 0px; overflow: hidden; outline: 0px;">Press Alt+1 for screen-reader mode, Alt+0 to cancel</span><access-widget-ui data-acsb="" class="notranslate"></access-widget-ui><a href="https://accessibe.com/blog/knowledgebase/screen-reader-guide" target="_blank" rel="noopener" data-acsb="sr-trigger" data-acsb-sr-only="true" class="acsb-sr-only" style="position: absolute; width: 200px; height: 1px; margin-top: -1px; z-index: -1; border: 0px; top: 0px; left: 0px; overflow: hidden; outline: 0px;">Accessibility Screen-Reader Guide, Feedback, and Issue Reporting</a><access-widget-ui data-acsb="skipLinks" class="notranslate"></access-widget-ui><access-widget-ui data-acsb="" class="notranslate"></access-widget-ui>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PBJ84RQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="dialog-off-canvas-main-canvas" data-off-canvas-main-canvas="">
     
@@ -146,7 +146,7 @@
 </svg>
         </a>
     </div>
-<div id="global-hdr-primary-nav" class="global-header__primary-nav span-8 title-menu-will-toggle mobile-is-setup">
+<div id="global-hdr-primary-nav" class="global-header__primary-nav span-8 title-menu-will-toggle">
             
 
 
@@ -3737,7 +3737,7 @@
 <div class="software-mm"></div>
                     <a href="/careers" class="" data-module="accordion" id="careers" data-target="[data-trigger-id='careers']" data-group="main-menu" data-no-transition-after-open="true" data-close-on-load="true" data-min-width="992" title="Careers">Careers</a>
 
-        <span class="next_menu"> </span>
+        <span class="next_menu" style="display: none;"> </span>
                   </li>
       
 
@@ -3750,7 +3750,7 @@
 <div class="software-mm"></div>
                     <a href="https://ir.ul.com" class="" data-module="accordion" id="investors" data-target="[data-trigger-id='investors']" data-group="main-menu" data-no-transition-after-open="true" data-close-on-load="true" data-min-width="992" title="Investors">Investors</a>
 
-        <span class="next_menu"> </span>
+        <span class="next_menu" style="display: none;"> </span>
                   </li>
   
 </ul></div></div>
@@ -3765,7 +3765,7 @@
       <a href="#" class="accordion" data-module="accordion" title="searchform" data-max-width="991" aria-label="Search Site">
         <span class="icon icon-search"></span>
     </a>
-    <div class="global-header__search-container search-container" style="display: none;">
+    <div class="global-header__search-container search-container">
         <div class="wrapper">
           <div class="form-group form-group--search search-bar-group form-loaded">
           <form action="/search/google/results" method="get" id="search-block-form" accept-charset="UTF-8">
@@ -3816,7 +3816,7 @@
       <div class="mega-menu">
                 
                         
-<section class="nav--mega-menu " data-trigger-id="services">
+<section class="nav--mega-menu " data-trigger-id="services" style="display: none;">
   <div class="wrapper ">
     <span class="nav--mega-menu--panel--title h2">Services</span>
     <div class="row">
@@ -4314,7 +4314,7 @@
         </section>
     
               
-<section class="nav--mega-menu updated" data-trigger-id="about-us">
+<section class="nav--mega-menu updated" data-trigger-id="about-us" style="display: none;">
   <div class="wrapper ">
     <span class="nav--mega-menu--panel--title h2">About Us</span>
     <div class="row">
@@ -4547,7 +4547,7 @@
         </section>
     
               
-<section class="nav--mega-menu updated" data-trigger-id="resources">
+<section class="nav--mega-menu updated" data-trigger-id="resources" style="display: none;">
   <div class="wrapper ">
     <span class="nav--mega-menu--panel--title h2">Resources</span>
     <div class="row">
@@ -4801,7 +4801,7 @@
         </section>
     
                         
-<section class="nav--mega-menu " data-trigger-id="industries">
+<section class="nav--mega-menu " data-trigger-id="industries" style="display: none;">
   <div class="wrapper ">
     <span class="nav--mega-menu--panel--title h2">Industries</span>
     <div class="row">
@@ -5460,7 +5460,7 @@
       </section>
 
 
-<section id="sftmenu" class="nav--mega-menu desktop-sftmenu" data-trigger-id="software">
+<section id="sftmenu" class="nav--mega-menu desktop-sftmenu" data-trigger-id="software" style="display: none;">
   <div class="sftmenu-wrap">
     <div class="sftmenu-flex">
             <ul class="sftmenu-tabs">
@@ -6231,7 +6231,7 @@
             <span></span>
             <span class="icon icon-filter"></span>
         </a>
-        <div class="form-group mobile_filter">
+        <div class="form-group mobile_filter" style="display: block;">
             <a href="javascript:void(0);" class="filter-slider-done close_x">X</a>
             <div class="row checkbox_filter">
                 <h5>Filter by</h5>
@@ -9528,7 +9528,7 @@
       <a href="/impressum" data-drupal-link-system-path="node/181106">Impressum</a>
       <a href="/resources/online-policies/about-cookies" data-drupal-link-system-path="node/183441">About Cookies</a>
       <a href="https://submit-irm.trustarc.eu/services/validation/0d4cb432-d0b6-4d78-ba6a-cb3c5a9a4174">Data Subject Access Request Portal</a>
-  <div id="teconsent" consent="undefined" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script src="https://consent.trustarc.com/asset/notice.js/v/v1.7-1909" async="async" crossorigin="" importance="high"></script><a role="link" id="icon-id06073655489099066" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div></div>
+  <div id="teconsent" consent="undefined" aria-label="Open Cookie Preferences Modal" class="truste_caIcon_display" role="complementary"><script src="https://consent.trustarc.com/asset/notice.js/v/v1.7-1909" async="async" crossorigin="" importance="high"></script><a role="link" id="icon-id0801825818717883" tabindex="0" lang="en" aria-haspopup="dialog" aria-label="Cookie Preferences, opens a dedicated popup modal window" class="truste_cursor_pointer">Cookie Preferences</a></div></div>
 
         </div>
         <nav class="social-nav">
@@ -9620,7 +9620,7 @@
 <script src="/modules/contrib/better_exposed_filters/js/bef_select_all_none.js?v=6.x"></script>
 <script src="/profiles/custom/ul_enterprise_profile/js/back_button.js" type="text/plain" class="trustecm" data-cookiecategory="2" defer=""></script>
 <script src="/modules/custom/ul_alerts/js/ul_alerts.alerts.js?ssaox4"></script>
-<script src="//consent.trustarc.com/notice?domain=ulsolutionsweb.com&amp;c=teconsent&amp;js=nj&amp;noticeType=bb&amp;text=true&amp;gtm=1" async="async" crossorigin="" id="truste_0.040989420839740776"></script>
+<script src="//consent.trustarc.com/notice?domain=ulsolutionsweb.com&amp;c=teconsent&amp;js=nj&amp;noticeType=bb&amp;text=true&amp;gtm=1" async="async" crossorigin="" id="truste_0.4978705110765653"></script>
 <script src="/modules/custom/ul_trustarc/js/ul_trustarc.js?ssaox4" defer=""></script>
 <script src="/core/misc/dialog/dialog.ajax.js?v=10.3.13"></script>
 <script src="/themes/custom/ul-com-theme/scripts/accessibe.js?v=1.x" defer=""></script>
@@ -9630,4 +9630,4 @@
 
 
 
-<div id="drupal-live-announce" class="visually-hidden" aria-live="polite" aria-busy="false"></div><div id="drupal-modal" class="ui-front" style="display: none;"></div><script src="//browser-update.org/update.min.js"></script><script src="//browser-update.org/update.show.min.js"></script></body></html>
+<div id="drupal-live-announce" class="visually-hidden" aria-live="polite" aria-busy="false"></div><div id="drupal-modal" class="ui-front" style="display: none;"></div><script src="//browser-update.org/update.min.js"></script><iframe role="presentation" srcdoc="<html lang=&quot;en&quot;><head><title>apiSanitizer</title></head></body></html>" style="visibility: hidden; pointer-events: none; position: fixed;"></iframe><iframe class="embeddedMessagingSiteContextFrame" id="embeddedMessagingSiteContextFrame" name="embeddedMessagingSiteContextFrame" src="https://ulenterpriseorg.my.site.com/ESWULDigitalAssistantE1715867975271/assets/htdocs/sitecontext.min.html?parent_domain=https%3A%2F%2Fwww.ul.com"></iframe><div id="embedded-messaging" class="embedded-messaging"><div class="embeddedMessagingConversationButtonWrapper"><button class="embeddedMessagingConversationButton" id="embeddedMessagingConversationButton" tabindex="0" role="button" aria-label="Hello, have a question? Let’s chat." title="Hello, have a question? Let’s chat." dir="ltr" style="--eswHeaderColor: #CA0123; --eswSecondaryColor: #CA0123;"><div id="embeddedMessagingIconContainer" class="embeddedMessagingIconContainer sfchat-icon"><img id="embeddedMessagingIconChat" class="embeddedMessagingIconChat" src="/themes/custom/ul-com-theme/img/chat/chat_icon.png" alt="Chat"></div></button></div></div><script id="inert-script" type="text/javascript" src="https://ulenterpriseorg.my.site.com/ESWULDigitalAssistantE1715867975271/assets/js/inert.min.js"></script><div class="acsb-trigger acsb-widget" tabindex="0" role="button"></div></body></html>
