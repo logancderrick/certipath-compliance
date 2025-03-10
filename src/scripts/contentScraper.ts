@@ -44,11 +44,11 @@ const sources: Source[] = [
   {
     name: 'UL Solutions',
     baseUrl: 'https://www.ul.com/news',
-    articleSelector: '.c-teaser',
-    titleSelector: '.c-teaser__title a',
-    contentSelector: '.c-teaser__description',
-    dateSelector: '.c-teaser__date',
-    linkSelector: '.c-teaser__title a',
+    articleSelector: '.card--news',
+    titleSelector: 'h2.card__title',
+    contentSelector: '.card-description',
+    dateSelector: '.date',
+    linkSelector: '.card--news a',
     category: 'Regulatory Updates',
     needsClick: true
   }
