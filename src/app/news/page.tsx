@@ -1,6 +1,18 @@
 import Link from 'next/link';
-import ArticleImage from '../../components/ArticleImage';
+import Image from 'next/image';
 import { getAllArticles } from '@/lib/firebase/articles';
+
+// Helper function to get logo path based on source
+function getSourceLogo(source: string = '') {
+  const sourceLower = source.toLowerCase();
+  if (sourceLower.includes('ul') || sourceLower.includes('underwriters')) {
+    return '/images/logos/ul-logo.png';
+  }
+  if (sourceLower.includes('compliance') || sourceLower.includes('incompliance')) {
+    return '/images/logos/incompliance-logo.png';
+  }
+  return null;
+}
 
 // Helper function for consistent date formatting
 function formatDate(dateString: string) {
@@ -105,74 +117,66 @@ export default async function NewsPage() {
   const articles = await getAllArticles();
   
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
-      <div className="bg-[var(--primary-color)] text-white py-16">
+      <div className="bg-[var(--primary-color)] text-white py-12">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl font-bold mb-4">Industry News & Updates</h1>
-            <p className="text-lg opacity-90">
-              Stay informed with the latest regulatory updates, industry news, and compliance insights from trusted sources.
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl font-bold mb-4">Latest News</h1>
+            <p className="text-white/80">
+              Stay up to date with the latest compliance and certification news
             </p>
           </div>
         </div>
       </div>
 
       {/* Articles Grid */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {articles.map((article) => (
-              <div 
-                key={article.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-lg"
-              >
-                <Link href={`/news/${article.slug}`} className="block h-full">
-                  <div className="relative h-48">
-                    <ArticleImage
-                      src={`/images/article-images/${article.slug}.jpg`}
-                      alt={article.title}
-                      fill
-                      className="object-cover"
-                    />
+      <div className="container mx-auto px-4 py-12">
+        <div className="max-w-4xl mx-auto">
+          <div className="grid gap-8">
+            {articles.map((article) => {
+              const logoPath = getSourceLogo(article.source);
+              
+              return (
+                <Link 
+                  key={article.slug}
+                  href={`/news/${article.slug}`}
+                  className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col md:flex-row"
+                >
+                  {/* Article Logo */}
+                  <div className="relative w-full md:w-48 flex items-center justify-center shrink-0 self-stretch">
+                    {logoPath && (
+                      <div className="relative w-32 h-32">
+                        <Image
+                          src={logoPath}
+                          alt={`${article.source} Logo`}
+                          fill
+                          className="object-contain"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      </div>
+                    )}
                   </div>
-                  <div className="p-6 flex flex-col h-[calc(100%-12rem)]">
-                    <div className="flex items-center justify-between mb-4">
-                      <time 
-                        dateTime={article.date}
-                        className="text-sm text-gray-500"
-                      >
+
+                  {/* Article Content */}
+                  <div className="p-6 flex-grow">
+                    <div className="flex items-center gap-4 text-sm text-gray-600 mb-2">
+                      <time dateTime={article.date}>
                         {formatDate(article.date)}
                       </time>
-                      <span className="px-3 py-1 text-xs font-medium bg-[var(--primary-color)] text-white rounded-full">
-                        {article.category}
-                      </span>
+                      <span className="text-gray-300">|</span>
+                      <span>{article.source}</span>
                     </div>
-                    <h2 className="text-xl font-semibold mb-3 text-gray-900 line-clamp-2 hover:text-[var(--primary-color)] transition-colors">
+                    <h2 className="text-xl font-semibold text-gray-900 group-hover:text-[var(--primary-color)] transition-colors mb-2">
                       {article.title}
                     </h2>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
+                    <p className="text-gray-600">
                       {article.excerpt}
                     </p>
-                    <div className="flex items-center justify-between mt-auto">
-                      <span className="text-sm text-gray-500">Source: {article.source}</span>
-                      <span className="text-[var(--primary-color)] font-medium inline-flex items-center group">
-                        Read more 
-                        <svg 
-                          xmlns="http://www.w3.org/2000/svg" 
-                          className="h-4 w-4 ml-1 transform transition-transform group-hover:translate-x-1" 
-                          fill="none" 
-                          viewBox="0 0 24 24" 
-                          stroke="currentColor"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </span>
-                    </div>
                   </div>
                 </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

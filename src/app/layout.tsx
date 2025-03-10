@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "CertiPath Compliance - Global Certification Services",
   description: "Ensuring your products meet global standards, every step of the way. CertiPath Compliance provides comprehensive regulatory compliance services for manufacturers worldwide.",
   icons: {
-    icon: '/images/Certipath Compliance_logo_b4_cropped.png',
+    icon: '/images/logos/Certipath Compliance_logo_b4_cropped.png',
   },
 };
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-US">
       <body className={inter.className}>
         <Header />
         <main>{children}</main>

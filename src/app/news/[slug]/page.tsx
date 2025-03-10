@@ -1,7 +1,15 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import ArticleImage from '../../../components/ArticleImage';
-import { getArticleBySlug, Article } from '@/lib/firebase/articles';
+import { getArticleBySlug, getAllArticles, Article } from '@/lib/firebase/articles';
+
+// Generate static params for all articles
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  return articles.map((article) => ({
+    slug: article.slug,
+  }));
+}
 
 // Helper function for consistent date formatting
 function formatDate(dateString: string) {
@@ -15,6 +23,18 @@ function formatDate(dateString: string) {
   } catch (error) {
     return dateString; // Return original string if parsing fails
   }
+}
+
+// Helper function to get logo path based on source
+function getSourceLogo(source: string = '') {
+  const sourceLower = source.toLowerCase();
+  if (sourceLower.includes('ul') || sourceLower.includes('underwriters')) {
+    return '/images/logos/ul-logo.png';
+  }
+  if (sourceLower.includes('compliance') || sourceLower.includes('incompliance')) {
+    return '/images/logos/incompliance-logo.png';
+  }
+  return null;
 }
 
 // Helper function to clean article content
@@ -130,11 +150,17 @@ function textToHtml(text: string): string {
 }
 
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
+  if (!params?.slug) {
+    notFound();
+  }
+
   const article = await getArticleBySlug(params.slug);
   
   if (!article) {
     notFound();
   }
+
+  const logoPath = getSourceLogo(article.source);
   
   return (
     <div className="bg-gray-50">
@@ -177,15 +203,21 @@ export default async function ArticlePage({ params }: { params: { slug: string }
 
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          {/* Article Image */}
-          <div className="relative h-[400px] mb-8 rounded-xl overflow-hidden shadow-lg">
-            <ArticleImage
-              src={`/images/article-images/${article.slug}.jpg`}
-              alt={article.title}
-              fill
-              className="object-cover"
-            />
-          </div>
+          {/* Article Logo */}
+          {logoPath && (
+            <div className="relative h-[150px] mb-8 flex items-center justify-center">
+              <div className="relative w-48 h-48">
+                <Image
+                  src={logoPath}
+                  alt={`${article.source} Logo`}
+                  fill
+                  className="object-contain"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+            </div>
+          )}
           
           {/* Article Content */}
           <div 

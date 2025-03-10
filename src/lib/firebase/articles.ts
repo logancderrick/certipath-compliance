@@ -28,6 +28,7 @@ export interface Article {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   timestamp: number;
+  imageUrl: string;
 }
 
 const COLLECTION_NAME = 'articles';
