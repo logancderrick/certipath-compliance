@@ -36,7 +36,7 @@ const sources: Source[] = [
     baseUrl: 'https://incompliancemag.com/topics/news/',
     articleSelector: '.td_module_wrap',
     titleSelector: '.entry-title a',
-    contentSelector: '.td-excerpt',
+    contentSelector: '.td-post-content',
     dateSelector: '.entry-date',
     linkSelector: '.entry-title a',
     imageSelector: '.entry-thumb',
@@ -48,12 +48,12 @@ const sources: Source[] = [
     baseUrl: 'https://www.ul.com/news',
     articleSelector: '.card.card--news',
     titleSelector: '.card__title',
-    contentSelector: '.card-description',
+    contentSelector: 'main article p, main article li',
     dateSelector: '.date',
     linkSelector: '.card.card--news a',
     imageSelector: '.image-container img',
     category: 'Regulatory Updates',
-    needsClick: false
+    needsClick: true
   }
 ];
 
@@ -128,7 +128,12 @@ async function scrapeSource(source: Source) {
           const articleData = await articlePage.evaluate(
             ({ titleSelector, contentSelector, dateSelector }) => {
               const title = document.querySelector(titleSelector)?.textContent?.trim() || '';
-              const content = document.querySelector(contentSelector)?.textContent?.trim() || '';
+              // Get all paragraphs and wrap them in p tags
+              const contentElements = document.querySelectorAll(contentSelector + ' p');
+              const content = Array.from(contentElements)
+                .map(el => el.textContent?.trim())
+                .filter(Boolean)
+                .join('\n\n'); // Keep markdown-style line breaks for readability
               const date = document.querySelector(dateSelector)?.textContent?.trim() || '';
               return { title, content, date };
             },
@@ -143,7 +148,7 @@ async function scrapeSource(source: Source) {
                 .replace(/[^\w\s-]/g, '')
                 .replace(/[\s_-]+/g, '-')
                 .replace(/^-+|-+$/g, ''),
-              excerpt: articleData.content.substring(0, 200) + '...',
+              excerpt: articleData.content.substring(0, 200) + '...', // No need to strip HTML tags anymore
               content: articleData.content,
               date: articleData.date || new Date().toISOString().split('T')[0],
               category: source.category,
