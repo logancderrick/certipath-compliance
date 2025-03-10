@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { promises as fs } from 'fs';
 import path from 'path';
 import ArticleImage from '../../components/ArticleImage';
+import matter from 'gray-matter';
 
 interface Article {
   id: string;
@@ -18,8 +19,16 @@ interface Article {
 
 // Helper function for consistent date formatting
 function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  return date.toISOString().split('T')[0];
+  try {
+    const date = new Date(dateString);
+    // Use UTC methods to ensure consistent output
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  } catch (error) {
+    return dateString; // Return original string if parsing fails
+  }
 }
 
 // Helper function to clean and format article excerpt
@@ -33,24 +42,32 @@ function formatExcerpt(content: string): string {
 }
 
 async function getArticles() {
-  const dataDir = path.join(process.cwd(), 'src', 'data');
-  const files = await fs.readdir(dataDir);
-  const articleFiles = files.filter(file => file.endsWith('-articles.json'));
+  const draftsDir = path.join(process.cwd(), 'src', 'data', 'drafts');
+  const files = await fs.readdir(draftsDir);
+  const articleFiles = files.filter(file => file.endsWith('.md'));
   
   let allArticles: Article[] = [];
   
   for (const file of articleFiles) {
-    const filePath = path.join(dataDir, file);
+    const filePath = path.join(draftsDir, file);
     const content = await fs.readFile(filePath, 'utf8');
-    const articles = JSON.parse(content);
+    const { data, content: articleContent } = matter(content);
     
-    // Clean and format each article's excerpt
-    const formattedArticles = articles.map((article: Article) => ({
-      ...article,
-      excerpt: formatExcerpt(article.content)
-    }));
+    // Create article object from markdown frontmatter and content
+    const article: Article = {
+      id: path.basename(file, '.md'),
+      title: data.title,
+      slug: path.basename(file, '.md'),
+      excerpt: formatExcerpt(articleContent),
+      content: articleContent,
+      date: data.date,
+      category: data.category,
+      source: data.source,
+      originalUrl: data.originalUrl,
+      published: !data.draft
+    };
     
-    allArticles = [...allArticles, ...formattedArticles];
+    allArticles.push(article);
   }
   
   // Sort articles by date, most recent first

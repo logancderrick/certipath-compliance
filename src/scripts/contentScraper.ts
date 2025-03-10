@@ -20,40 +20,46 @@ interface Article {
 interface Source {
   name: string;
   baseUrl: string;
-  articleSelector: string;
-  titleSelector: string;
-  contentSelector: string;
-  dateSelector: string;
-  linkSelector: string;
-  imageSelector: string;
+  listingSelectors: {
+    articles: string;
+    link: string;
+  };
+  articleSelectors: {
+    title: string;
+    content: string;
+    date: string;
+  };
   category: string;
-  needsClick: boolean;
 }
 
 const sources: Source[] = [
   {
     name: 'In Compliance Magazine',
-    baseUrl: 'https://incompliancemag.com/topics/news/',
-    articleSelector: '.td_module_wrap',
-    titleSelector: '.entry-title a',
-    contentSelector: '.td-post-content',
-    dateSelector: '.entry-date',
-    linkSelector: '.entry-title a',
-    imageSelector: '.entry-thumb',
-    category: 'Industry News',
-    needsClick: true
+    baseUrl: 'https://incompliancemag.com/topics/news/global-compliance-news/',
+    listingSelectors: {
+      articles: '.td_module_flex',
+      link: '.entry-title a'
+    },
+    articleSelectors: {
+      title: 'h1.tdb-title-text, h1.entry-title, .tdb-title-text',
+      content: '.tdb-block-inner p, .td-post-content p, article p',
+      date: 'time.entry-date, .tdb-author-date time'
+    },
+    category: 'Global Compliance News'
   },
   {
     name: 'UL Solutions',
     baseUrl: 'https://www.ul.com/news',
-    articleSelector: '.card.card--news',
-    titleSelector: '.card__title',
-    contentSelector: 'main article p, main article li',
-    dateSelector: '.date',
-    linkSelector: '.card.card--news a',
-    imageSelector: '.image-container img',
-    category: 'Regulatory Updates',
-    needsClick: true
+    listingSelectors: {
+      articles: '.card.card--news',
+      link: '.card--news a'
+    },
+    articleSelectors: {
+      title: '.article__title, .article-title, h1',
+      content: '.article__content, .article-content, .article-body, main article',
+      date: '.article__date, .article-date, time, .date'
+    },
+    category: 'Regulatory Updates'
   }
 ];
 
@@ -63,8 +69,8 @@ async function ensureDirectoryExists(dirPath: string) {
   }
 }
 
-async function scrapeSource(source: Source) {
-  console.log(`Starting to scrape ${source.name}...`);
+async function downloadArticles(source: Source) {
+  console.log(`\nDownloading articles from ${source.name}...`);
   
   const browser = await puppeteer.launch({
     headless: true,
@@ -72,186 +78,137 @@ async function scrapeSource(source: Source) {
   });
   
   try {
+    // Create directory for HTML files
+    const rawHtmlDir = path.join(process.cwd(), 'src', 'data', 'raw-html', source.name.toLowerCase().replace(/\s+/g, '-'));
+    await ensureDirectoryExists(rawHtmlDir);
+    
     const page = await browser.newPage();
-    
-    // Set a user agent to avoid being blocked
     await page.setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36');
+    await page.setDefaultNavigationTimeout(120000);
     
-    // Increase timeouts
-    await page.setDefaultNavigationTimeout(120000); // 2 minutes
-    await page.setDefaultTimeout(15000); // 15 seconds
-    
-    console.log(`Navigating to ${source.baseUrl}...`);
+    // Navigate to the listing page
+    console.log(`Navigating to ${source.baseUrl}`);
     await page.goto(source.baseUrl, { waitUntil: 'networkidle0' });
     
-    // Ensure directories exist
-    const screenshotsDir = path.join(process.cwd(), 'public', 'images', 'screenshots');
-    const dataDir = path.join(process.cwd(), 'src', 'data');
-    const draftsDir = path.join(process.cwd(), 'data', 'drafts');
-    await ensureDirectoryExists(screenshotsDir);
-    await ensureDirectoryExists(dataDir);
-    await ensureDirectoryExists(draftsDir);
+    // Get all article links
+    const links = await page.$$eval(source.listingSelectors.link, (elements) => 
+      elements.map((el) => ({
+        url: (el as HTMLAnchorElement).href,
+        text: el.textContent?.trim() || ''
+      }))
+    );
     
-    // Take screenshot before scraping
-    const screenshotPath = path.join(screenshotsDir, `${source.name.replace(/\s+/g, '-')}-before-scrape.png`);
-    await page.screenshot({ path: screenshotPath, fullPage: true });
+    console.log(`Found ${links.length} articles`);
     
-    // Save HTML content for debugging
-    const htmlPath = path.join(dataDir, `${source.name.replace(/\s+/g, '-')}-page.html`);
-    const html = await page.content();
-    fs.writeFileSync(htmlPath, html);
-    
-    console.log('Looking for articles...');
-    let articles: Article[] = [];
-    
-    if (source.needsClick) {
-      // For sources that need clicking to access content
-      const links = await page.$$eval(source.linkSelector, (elements) => 
-        elements.map((el) => (el as HTMLAnchorElement).href).filter(Boolean)
-      );
+    // Download first 5 articles
+    for (let i = 0; i < Math.min(links.length, 5); i++) {
+      const { url, text } = links[i];
+      console.log(`\nDownloading article ${i + 1}/${Math.min(links.length, 5)}: ${text}`);
       
-      console.log(`Found ${links.length} article links`);
-      
-      // Process first 5 articles to avoid too many requests
-      for (let i = 0; i < Math.min(links.length, 5); i++) {
-        const link = links[i];
-        console.log(`Processing article ${i + 1}/${Math.min(links.length, 5)}: ${link}`);
+      const articlePage = await browser.newPage();
+      try {
+        await articlePage.goto(url, { waitUntil: 'networkidle0' });
         
-        const articlePage = await browser.newPage();
-        try {
-          await articlePage.goto(link, { waitUntil: 'networkidle0' });
-          
-          // Take screenshot of article page
-          const articleScreenshotPath = path.join(screenshotsDir, `${source.name.replace(/\s+/g, '-')}-article-${i+1}.png`);
-          await articlePage.screenshot({ path: articleScreenshotPath, fullPage: true });
-          
-          const articleData = await articlePage.evaluate(
-            ({ titleSelector, contentSelector, dateSelector }) => {
-              const title = document.querySelector(titleSelector)?.textContent?.trim() || '';
-              // Get all paragraphs and wrap them in p tags
-              const contentElements = document.querySelectorAll(contentSelector + ' p');
-              const content = Array.from(contentElements)
-                .map(el => el.textContent?.trim())
-                .filter(Boolean)
-                .join('\n\n'); // Keep markdown-style line breaks for readability
-              const date = document.querySelector(dateSelector)?.textContent?.trim() || '';
-              return { title, content, date };
-            },
-            source
-          );
-          
-          if (articleData.title && articleData.content) {
-            const article: Article = {
-              id: uuidv4(),
-              title: articleData.title,
-              slug: articleData.title.toLowerCase()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/[\s_-]+/g, '-')
-                .replace(/^-+|-+$/g, ''),
-              excerpt: articleData.content.substring(0, 200) + '...', // No need to strip HTML tags anymore
-              content: articleData.content,
-              date: articleData.date || new Date().toISOString().split('T')[0],
-              category: source.category,
-              source: source.name,
-              originalUrl: link,
-              published: false
-            };
-            
-            articles.push(article);
-            console.log(`Added article: ${article.title}`);
-            
-            // Create draft markdown file
-            const draftContent = matter.stringify(article.content, {
-              title: article.title,
-              date: article.date,
-              category: article.category,
-              source: article.source,
-              originalUrl: article.originalUrl,
-              draft: true
-            });
-            
-            const draftPath = path.join(draftsDir, `${article.slug}.md`);
-            fs.writeFileSync(draftPath, draftContent);
-            console.log(`Created draft: ${draftPath}`);
-          }
-        } catch (error) {
-          console.error(`Error processing article ${link}:`, error);
-        } finally {
-          await articlePage.close();
-        }
-      }
-    } else {
-      // For sources that can be scraped directly
-      const articleElements = await page.$$(source.articleSelector);
-      console.log(`Found ${articleElements.length} articles`);
-      
-      for (const articleElement of articleElements) {
-        try {
-          const data = await articleElement.evaluate(
-            (el, { titleSelector, contentSelector, dateSelector, linkSelector, imageSelector }) => {
-              const title = el.querySelector(titleSelector)?.textContent?.trim() || '';
-              const content = el.querySelector(contentSelector)?.textContent?.trim() || '';
-              const date = el.querySelector(dateSelector)?.textContent?.trim() || '';
-              const link = (el.querySelector(linkSelector) as HTMLAnchorElement)?.href;
-              const image = el.querySelector(imageSelector)?.getAttribute('src') || '';
-              return { title, content, date, link, image };
-            },
-            source
-          );
-          
-          if (data.title && data.content) {
-            const article: Article = {
-              id: uuidv4(),
-              title: data.title,
-              slug: data.title.toLowerCase()
-                .replace(/[^\w\s-]/g, '')
-                .replace(/[\s_-]+/g, '-')
-                .replace(/^-+|-+$/g, ''),
-              excerpt: data.content.substring(0, 200) + '...',
-              content: data.content,
-              date: data.date || new Date().toISOString().split('T')[0],
-              category: source.category,
-              source: source.name,
-              originalUrl: data.link || '',
-              published: false
-            };
-            
-            articles.push(article);
-            console.log(`Added article: ${article.title}`);
-            
-            // Create draft markdown file
-            const draftContent = matter.stringify(article.content, {
-              title: article.title,
-              date: article.date,
-              category: article.category,
-              source: article.source,
-              originalUrl: article.originalUrl,
-              draft: true
-            });
-            
-            const draftPath = path.join(draftsDir, `${article.slug}.md`);
-            fs.writeFileSync(draftPath, draftContent);
-            console.log(`Created draft: ${draftPath}`);
-          }
-        } catch (error) {
-          console.error('Error processing article:', error);
-        }
+        // Save raw HTML
+        const html = await articlePage.content();
+        const htmlFileName = `article-${i + 1}.html`;
+        const htmlPath = path.join(rawHtmlDir, htmlFileName);
+        fs.writeFileSync(htmlPath, html, 'utf8');
+        console.log(`Saved HTML to ${htmlPath}`);
+        
+      } catch (error) {
+        console.error(`Error downloading article ${url}:`, error);
+      } finally {
+        await articlePage.close();
       }
     }
-    
-    // Save articles to JSON
-    if (articles.length > 0) {
-      const articlesPath = path.join(dataDir, `${source.name.replace(/\s+/g, '-')}-articles.json`);
-      fs.writeFileSync(articlesPath, JSON.stringify(articles, null, 2));
-      console.log(`Saved ${articles.length} articles to ${articlesPath}`);
-    }
-    
-    return articles;
-  } catch (error) {
-    console.error(`Error scraping ${source.name}:`, error);
-    return [];
   } finally {
     await browser.close();
+  }
+}
+
+async function processArticles(source: Source) {
+  console.log(`\nProcessing HTML files for ${source.name}...`);
+  
+  const rawHtmlDir = path.join(process.cwd(), 'src', 'data', 'raw-html', source.name.toLowerCase().replace(/\s+/g, '-'));
+  const draftsDir = path.join(process.cwd(), 'src', 'data', 'drafts');
+  
+  await ensureDirectoryExists(draftsDir);
+  
+  if (!fs.existsSync(rawHtmlDir)) {
+    console.error(`No HTML files found for ${source.name}`);
+    return;
+  }
+  
+  const htmlFiles = fs.readdirSync(rawHtmlDir)
+    .filter(file => file.endsWith('.html') && !file.startsWith('debug-'));
+  
+  console.log(`Found ${htmlFiles.length} HTML files to process`);
+  
+  for (const htmlFile of htmlFiles) {
+    console.log(`\nProcessing ${htmlFile}...`);
+    
+    const htmlPath = path.join(rawHtmlDir, htmlFile);
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    
+    // Extract title (try multiple methods)
+    const titleMatch = html.match(/<title>([^<]+)<\/title>/);
+    const h1Match = html.match(/<h1[^>]*>([^<]+)<\/h1>/);
+    const title = (h1Match ? h1Match[1] : titleMatch ? titleMatch[1].split(' - ')[0] : '').trim();
+    
+    // Extract content
+    let content = '';
+    const articleMatch = html.match(/<article[^>]*>([\s\S]*?)<\/article>/);
+    const mainMatch = html.match(/<main[^>]*>([\s\S]*?)<\/main>/);
+    const contentMatch = articleMatch || mainMatch;
+    
+    if (contentMatch) {
+      // Extract paragraphs
+      const paragraphs = contentMatch[1].match(/<p[^>]*>([\s\S]*?)<\/p>/g) || [];
+      content = paragraphs
+        .map(p => p.replace(/<[^>]+>/g, '').trim()) // Remove HTML tags
+        .filter(p => p.length > 0) // Remove empty paragraphs
+        .join('\n\n');
+    }
+    
+    // Extract date
+    const dateMatch = html.match(/datetime="([^"]+)"|<time[^>]*>([^<]+)<\/time>|<div class="date">([^<]+)<\/div>/);
+    const date = dateMatch ? (dateMatch[1] || dateMatch[2] || dateMatch[3]).trim() : new Date().toISOString().split('T')[0];
+    
+    // Extract canonical URL
+    const urlMatch = html.match(/<link[^>]*rel="canonical"[^>]*href="([^"]+)"/);
+    const originalUrl = urlMatch ? urlMatch[1] : '';
+    
+    if (title && content) {
+      const slug = title.toLowerCase()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/[\s_-]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      
+      const frontmatter = {
+        title,
+        date,
+        category: source.category,
+        source: source.name,
+        originalUrl,
+        draft: true
+      };
+      
+      const draftContent = matter.stringify(content, frontmatter);
+      const draftPath = path.join(draftsDir, `${slug}.md`);
+      
+      console.log('\nCreating draft:');
+      console.log('Title:', title);
+      console.log('Date:', date);
+      console.log('Path:', draftPath);
+      
+      fs.writeFileSync(draftPath, draftContent, 'utf8');
+      console.log('Draft created successfully');
+    } else {
+      console.log('Skipping - missing title or content');
+      console.log('Title found:', title ? 'Yes' : 'No');
+      console.log('Content length:', content.length);
+    }
   }
 }
 
@@ -260,9 +217,12 @@ async function main() {
   
   for (const source of sources) {
     try {
-      await scrapeSource(source);
+      // Phase 1: Download HTML files
+      await downloadArticles(source);
+      // Phase 2: Process HTML files and create drafts
+      await processArticles(source);
     } catch (error) {
-      console.error(`Failed to scrape ${source.name}:`, error);
+      console.error(`Failed to process ${source.name}:`, error);
     }
   }
   

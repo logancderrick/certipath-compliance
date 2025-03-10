@@ -3,6 +3,7 @@ import path from 'path';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import ArticleImage from '../../../components/ArticleImage';
+import matter from 'gray-matter';
 
 interface Article {
   id: string;
@@ -19,24 +20,41 @@ interface Article {
 
 // Helper function for consistent date formatting
 function formatDate(dateString: string) {
-  const date = new Date(dateString);
-  return date.toISOString().split('T')[0];
+  try {
+    const date = new Date(dateString);
+    // Use UTC methods to ensure consistent output
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  } catch (error) {
+    return dateString; // Return original string if parsing fails
+  }
 }
 
 async function getArticle(slug: string): Promise<Article | null> {
-  const dataDir = path.join(process.cwd(), 'src', 'data');
-  const files = await fs.readdir(dataDir);
-  const articleFiles = files.filter(file => file.endsWith('-articles.json'));
+  const draftsDir = path.join(process.cwd(), 'src', 'data', 'drafts');
+  const filePath = path.join(draftsDir, `${slug}.md`);
   
-  for (const file of articleFiles) {
-    const filePath = path.join(dataDir, file);
+  try {
     const content = await fs.readFile(filePath, 'utf8');
-    const articles: Article[] = JSON.parse(content);
-    const article = articles.find(a => a.slug === slug);
-    if (article) return article;
+    const { data, content: articleContent } = matter(content);
+    
+    return {
+      id: slug,
+      title: data.title,
+      slug: slug,
+      excerpt: '', // Not needed for full article view
+      content: articleContent,
+      date: data.date,
+      category: data.category,
+      source: data.source,
+      originalUrl: data.originalUrl,
+      published: !data.draft
+    };
+  } catch (error) {
+    return null;
   }
-  
-  return null;
 }
 
 export default async function ArticlePage({ params }: { params: { slug: string } }) {
@@ -86,8 +104,10 @@ export default async function ArticlePage({ params }: { params: { slug: string }
           
           {/* Article Content */}
           <div className="prose prose-lg max-w-none">
-            {article.content.split('\n').map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
+            {article.content.split('\n\n').map((paragraph, index) => (
+              paragraph.trim() && (
+                <p key={index} className="mb-6">{paragraph.trim()}</p>
+              )
             ))}
           </div>
           
