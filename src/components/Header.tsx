@@ -28,7 +28,6 @@ const Header = () => {
               <li><Link href="/" className="hover:text-[var(--primary-color)]">HOME</Link></li>
               <li><Link href="/contact-us" className="hover:text-[var(--primary-color)]">CONTACT</Link></li>
               <li><Link href="/request-quote" className="hover:text-[var(--primary-color)]">RFQ</Link></li>
-              <li><Link href="/cats" className="hover:text-[var(--primary-color)]">CATS</Link></li>
             </ul>
           </nav>
 
@@ -83,7 +82,7 @@ const Header = () => {
                 </div>
               </li>
               <li><Link href="/about-us" className="hover:text-[var(--primary-color)] py-2 block">About Us</Link></li>
-              <li><Link href="/articles" className="hover:text-[var(--primary-color)] py-2 block">News/Blog</Link></li>
+              <li><Link href="/news" className="hover:text-[var(--primary-color)] py-2 block">News</Link></li>
               <li><Link href="/contact-us" className="hover:text-[var(--primary-color)] py-2 block">Contact Us</Link></li>
               <li><Link href="/request-quote" className="bg-[var(--primary-color)] text-white px-4 py-2 rounded hover:bg-[var(--primary-dark)] transition-colors">Quote</Link></li>
             </ul>
@@ -120,10 +119,9 @@ const Header = () => {
                 </ul>
               </li>
               <li><Link href="/about-us" className="block hover:text-[var(--primary-color)]">About Us</Link></li>
-              <li><Link href="/articles" className="block hover:text-[var(--primary-color)]">News/Blog</Link></li>
+              <li><Link href="/news" className="block hover:text-[var(--primary-color)]">News</Link></li>
               <li><Link href="/contact-us" className="block hover:text-[var(--primary-color)]">Contact Us</Link></li>
               <li><Link href="/request-quote" className="block hover:text-[var(--primary-color)]">Quote</Link></li>
-              <li><Link href="/cats" className="block hover:text-[var(--primary-color)]">CATS</Link></li>
             </ul>
           </div>
         </div>

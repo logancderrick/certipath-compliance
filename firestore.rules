@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to all articles
+    match /articles/{articleId} {
+      allow read: if true;
+      allow write: if true; // For testing purposes. You should restrict this in production
+    }
+    
+    // Default deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+} 
