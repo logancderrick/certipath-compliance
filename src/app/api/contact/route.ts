@@ -17,13 +17,16 @@ export async function POST(request: Request) {
 
     const data = await resend.emails.send({
       from: 'Contact Form <onboarding@resend.dev>',
-      to: ['contact@certipathcompliance.com'],
-      subject: 'New Contact Form Submission',
+      to: ['admin@certipathcompliance.com'],
+      subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
       text: `
+Contact Form Submission Details:
+
 Name: ${name}
 Email: ${email}
 Phone: ${phone || 'Not provided'}
+Company: ${body.company || 'Not provided'}
 
 Message:
 ${message}

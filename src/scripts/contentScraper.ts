@@ -39,7 +39,7 @@ const sources: Source[] = [
     dateSelector: 'time.entry-date',
     linkSelector: 'h3.entry-title.td-module-title a',
     category: 'Industry News',
-    needsClick: false
+    needsClick: true
   },
   {
     name: 'UL Solutions',

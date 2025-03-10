@@ -98,7 +98,7 @@ export async function POST(request: Request) {
     // Send the email
     const data = await resend.emails.send({
       from: 'Quote Request <onboarding@resend.dev>',
-      to: ['contact@certipathcompliance.com'],
+      to: ['admin@certipathcompliance.com'],
       subject: `New Quote Request from ${name} at ${company}`,
       replyTo: email.toString(),
       text: emailContent,
