@@ -17,15 +17,6 @@ const GlobalCertificationsSection = () => {
             <p className="text-gray-700">
               Our global network spans more than 200 countries, providing you with localized expertise wherever you need it. With decades of combined experience across our team, we&apos;ve developed proven methodologies that make certification predictable, efficient, and hassle-free.
             </p>
-            
-            <div className="mt-8 text-center">
-              <Link 
-                href="/our-services/global-certifications" 
-                className="inline-block bg-[var(--primary-color)] text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-[var(--primary-dark)] transition-colors"
-              >
-                Explore Our Certification Services
-              </Link>
-            </div>
           </div>
         </div>
       </div>

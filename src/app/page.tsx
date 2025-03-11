@@ -11,7 +11,6 @@ export default function Home() {
       <ServicesSection />
       <ProcessSection />
       <GlobalCertificationsSection />
-      <AboutSection />
     </main>
   );
 }

@@ -126,7 +126,7 @@ export default function RequestQuote() {
     });
     
     setShowCertificationDetails(newState);
-  }, [showCertificationDetails]);
+  }, []);
 
   // Watch for changes in certification areas
   useEffect(() => {
