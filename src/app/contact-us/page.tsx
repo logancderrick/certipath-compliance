@@ -110,7 +110,7 @@ export default function ContactUs() {
                 {submitSuccess ? (
                   <div className="bg-green-50 border border-green-200 text-green-800 rounded-lg p-6 mb-6">
                     <h3 className="text-xl font-bold mb-2">Thank You!</h3>
-                    <p>Your message has been sent successfully. We'll get back to you as soon as possible.</p>
+                    <p>Your message has been sent successfully. We&apos;ll get back to you as soon as possible.</p>
                     <button 
                       onClick={() => setSubmitSuccess(false)}
                       className="mt-4 bg-[var(--primary-color)] text-white py-2 px-4 rounded hover:bg-[var(--primary-dark)] transition-colors"

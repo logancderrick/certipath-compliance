@@ -1,15 +1,16 @@
 import { 
   collection, 
-  getDocs, 
-  getDoc,
+  getDocs,
   doc, 
   query, 
   orderBy, 
   addDoc,
   updateDoc,
   where,
+  Timestamp,
   DocumentData,
-  Timestamp
+  QueryDocumentSnapshot,
+  FirestoreDataConverter
 } from 'firebase/firestore';
 import { db } from './config';
 
@@ -28,27 +29,65 @@ export interface Article {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   timestamp: number;
-  imageUrl: string;
+  imageUrl?: string;
 }
+
+const articleConverter: FirestoreDataConverter<Article> = {
+  toFirestore(article: Article): DocumentData {
+    return {
+      title: article.title,
+      slug: article.slug,
+      excerpt: article.excerpt,
+      content: article.content,
+      date: article.date,
+      category: article.category,
+      source: article.source,
+      originalUrl: article.originalUrl,
+      published: article.published,
+      htmlContent: article.htmlContent,
+      createdAt: article.createdAt,
+      updatedAt: article.updatedAt,
+      timestamp: article.timestamp,
+      imageUrl: article.imageUrl
+    };
+  },
+  fromFirestore(snapshot: QueryDocumentSnapshot): Article {
+    const data = snapshot.data();
+    return {
+      id: snapshot.id,
+      title: data.title,
+      slug: data.slug,
+      excerpt: data.excerpt,
+      content: data.content,
+      date: data.date,
+      category: data.category,
+      source: data.source,
+      originalUrl: data.originalUrl,
+      published: data.published,
+      htmlContent: data.htmlContent,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      timestamp: data.timestamp,
+      imageUrl: data.imageUrl
+    };
+  }
+};
 
 const COLLECTION_NAME = 'articles';
 
 export async function getAllArticles(): Promise<Article[]> {
-  const articlesRef = collection(db, COLLECTION_NAME);
+  const articlesRef = collection(db, COLLECTION_NAME).withConverter(articleConverter);
   const q = query(
     articlesRef,
     orderBy('date', 'desc')
   );
   
   const querySnapshot = await getDocs(q);
-  return querySnapshot.docs.map(doc => ({
-    id: doc.id,
-    ...doc.data()
-  } as Article));
+  return querySnapshot.docs.map(doc => doc.data());
 }
 
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
-  const articlesRef = collection(db, COLLECTION_NAME);
+  const articlesRef = collection(db, COLLECTION_NAME).withConverter(articleConverter);
   const q = query(articlesRef, where('slug', '==', slug));
   const querySnapshot = await getDocs(q);
   
@@ -56,16 +95,12 @@ export async function getArticleBySlug(slug: string): Promise<Article | null> {
     return null;
   }
   
-  const doc = querySnapshot.docs[0];
-  return {
-    id: doc.id,
-    ...doc.data()
-  } as Article;
+  return querySnapshot.docs[0].data();
 }
 
 export async function createArticle(article: Omit<Article, 'id'>): Promise<string> {
-  const articlesRef = collection(db, COLLECTION_NAME);
-  const docRef = await addDoc(articlesRef, article);
+  const articlesRef = collection(db, COLLECTION_NAME).withConverter(articleConverter);
+  const docRef = await addDoc(articlesRef, article as Article);
   return docRef.id;
 }
 

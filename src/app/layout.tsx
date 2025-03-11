@@ -14,11 +14,13 @@ export const metadata: Metadata = {
   },
 };
 
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<RootLayoutProps>) {
   return (
     <html lang="en-US">
       <body className={inter.className}>

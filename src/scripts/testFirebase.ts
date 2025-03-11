@@ -33,7 +33,7 @@ async function testFirebaseConnection() {
 
     // Validate required config
     const missingVars = Object.entries(firebaseConfig)
-      .filter(([_, value]) => !value)
+      .filter(([, value]) => !value)
       .map(([key]) => key);
 
     if (missingVars.length > 0) {
@@ -78,10 +78,13 @@ async function testFirebaseConnection() {
     const snapshot = await getDocs(articlesRef);
     console.log(`Found ${snapshot.size} documents in 'articles' collection.`);
     
-    snapshot.forEach(doc => {
-      console.log('\nDocument:', doc.id);
-      console.log('Data:', JSON.stringify(doc.data(), null, 2));
-    });
+    const articles = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+    
+    // Log the articles data
+    console.log('Articles:', JSON.stringify(articles, null, 2));
 
     return true;
   } catch (error) {

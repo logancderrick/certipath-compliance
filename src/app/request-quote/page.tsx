@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useState, useEffect, useCallback } from 'react';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import * as z from 'zod';
 
 // Define the form schema with validation
 const quoteFormSchema = z.object({
@@ -75,7 +75,6 @@ export default function RequestQuote() {
   const {
     register,
     handleSubmit,
-    control,
     watch,
     reset,
     formState: { errors }
@@ -101,7 +100,7 @@ export default function RequestQuote() {
   const watchCertificationAreas = watch('otherCertificationAreas');
 
   // Toggle certification detail sections based on selected areas
-  const updateCertificationDetails = (areas: string[] | undefined) => {
+  const updateCertificationDetails = useCallback((areas: string[] | undefined) => {
     if (!areas) return;
     
     const newState = { ...showCertificationDetails };
@@ -127,12 +126,12 @@ export default function RequestQuote() {
     });
     
     setShowCertificationDetails(newState);
-  };
+  }, [showCertificationDetails]);
 
   // Watch for changes in certification areas
   useEffect(() => {
     updateCertificationDetails(watchCertificationAreas);
-  }, [watchCertificationAreas]);
+  }, [watchCertificationAreas, updateCertificationDetails]);
 
   const onSubmit = async (data: QuoteFormData) => {
     setIsSubmitting(true);

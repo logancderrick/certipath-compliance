@@ -1,19 +1,17 @@
-import Hero from "../components/Hero";
-import AboutSection from "../components/AboutSection";
-import ServicesSection from "../components/ServicesSection";
-import TestimonialsSection from "../components/TestimonialsSection";
-import GlobalCertificationsSection from "../components/GlobalCertificationsSection";
-import ProcessSection from "../components/ProcessSection";
-import ContactSection from "../components/ContactSection";
+import Hero from '../components/Hero';
+import ServicesSection from '../components/ServicesSection';
+import ProcessSection from '../components/ProcessSection';
+import GlobalCertificationsSection from '../components/GlobalCertificationsSection';
+import AboutSection from '../components/AboutSection';
 
 export default function Home() {
   return (
-    <>
+    <main>
       <Hero />
-      <AboutSection />
       <ServicesSection />
-      <GlobalCertificationsSection />
       <ProcessSection />
-    </>
+      <GlobalCertificationsSection />
+      <AboutSection />
+    </main>
   );
 }

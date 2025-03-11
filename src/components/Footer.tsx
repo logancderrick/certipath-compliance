@@ -2,19 +2,8 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const Footer = () => {
-  const [email, setEmail] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle newsletter signup
-    console.log('Newsletter signup:', email);
-    setEmail('');
-    alert('Thank you for signing up for our newsletter!');
-  };
-
   return (
     <footer className="bg-[var(--gray-light)] pt-12 pb-6">
       <div className="container mx-auto px-4">

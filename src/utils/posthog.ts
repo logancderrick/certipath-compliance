@@ -1,19 +1,32 @@
 import posthog from 'posthog-js';
 
-// Helper function to capture events
-export const captureEvent = (eventName: string, properties?: Record<string, any>) => {
+type PostHogEvent = {
+  name: string;
+  properties?: Record<string, string | number | boolean>;
+};
+
+type PostHogIdentify = {
+  distinctId: string;
+  properties?: Record<string, string | number | boolean>;
+};
+
+export const initPostHog = () => {
   if (typeof window !== 'undefined') {
-    posthog.capture(eventName, properties);
+    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || '', {
+      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
+    });
   }
 };
 
-// Helper function to identify users
-export const identifyUser = (
-  distinctId: string,
-  properties?: Record<string, any>
-) => {
+export const trackEvent = (event: PostHogEvent) => {
   if (typeof window !== 'undefined') {
-    posthog.identify(distinctId, properties);
+    posthog.capture(event.name, event.properties);
+  }
+};
+
+export const identifyUser = (data: PostHogIdentify) => {
+  if (typeof window !== 'undefined') {
+    posthog.identify(data.distinctId, data.properties);
   }
 };
 

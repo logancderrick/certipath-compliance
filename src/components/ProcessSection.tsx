@@ -7,7 +7,7 @@ const ProcessSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <p className="text-gray-700 mb-6">
-              CertiPath Compliance employs a distinctive methodology that begins with a comprehensive analysis of your product ecosystem. We don't just look at individual products—we examine how your entire portfolio interacts with global regulatory frameworks to identify strategic opportunities for streamlining compliance.
+              CertiPath Compliance employs a distinctive methodology that begins with a comprehensive analysis of your product ecosystem. We don&apos;t just look at individual products—we examine how your entire portfolio interacts with global regulatory frameworks to identify strategic opportunities for streamlining compliance.
             </p>
             <p className="text-gray-700 mb-6">
               Our approach integrates compliance considerations directly into your development process. By identifying potential regulatory challenges early, we help you make design decisions that satisfy multiple market requirements simultaneously, reducing the need for costly redesigns or market-specific variants.

@@ -1,37 +1,37 @@
 'use client';
 
-import React from 'react';
+import React, { ReactNode } from 'react';
+import usePostHog from '@/hooks/usePostHog';
 
-interface PostHogClickTrackingProps {
+type PostHogClickTrackingProps = {
   eventName: string;
-  properties?: Record<string, any>;
-  children: React.ReactNode;
+  properties?: Record<string, string | number | boolean>;
+  children: ReactNode;
   className?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
-}
+} & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>;
 
-export default function PostHogClickTracking({
+const PostHogClickTracking: React.FC<PostHogClickTrackingProps> = ({
   eventName,
   properties = {},
   children,
   className = '',
   onClick,
   ...rest
-}: PostHogClickTrackingProps & Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'onClick'>) {
+}) => {
+  const { track } = usePostHog();
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Track the event in PostHog
-    if (typeof window !== 'undefined' && window.posthog) {
-      window.posthog.capture(eventName, properties);
-    }
+    track({ name: eventName, properties });
     
     // Call the original onClick handler if provided
-    if (onClick) {
-      onClick(e);
-    }
+    onClick?.(e);
   };
 
   return (
     <button
+      type="button"
       className={className}
       onClick={handleClick}
       {...rest}
@@ -39,4 +39,6 @@ export default function PostHogClickTracking({
       {children}
     </button>
   );
-} 
+};
+
+export default PostHogClickTracking; 

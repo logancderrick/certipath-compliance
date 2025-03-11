@@ -70,12 +70,12 @@ const Header = () => {
                 <div className="absolute left-0 top-[calc(100%+0.5rem)] w-64 bg-white rounded-lg shadow-lg py-4 px-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                   <ul className="space-y-2">
                     <li className="font-semibold text-[var(--secondary-color)]">Our Services</li>
-                    <li className="pl-4"><a href="/#services-engineering" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Engineering Solution Services</a></li>
-                    <li className="pl-4"><a href="/#services-certifications" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Global Product Certifications</a></li>
-                    <li className="pl-4"><a href="/#services-roadmaps" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Compliance Roadmaps</a></li>
-                    <li className="pl-4"><a href="/#services-integration" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Process Integration</a></li>
-                    <li className="pl-4"><a href="/#services-advisory" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Regulatory Advisory Services</a></li>
-                    <li className="pl-4"><a href="/#services-market-access" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Market Access Strategy</a></li>
+                    <li className="pl-4"><Link href="/#services-engineering" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Engineering Solution Services</Link></li>
+                    <li className="pl-4"><Link href="/#services-certifications" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Global Product Certifications</Link></li>
+                    <li className="pl-4"><Link href="/#services-roadmaps" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Compliance Roadmaps</Link></li>
+                    <li className="pl-4"><Link href="/#services-integration" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Process Integration</Link></li>
+                    <li className="pl-4"><Link href="/#services-advisory" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Regulatory Advisory Services</Link></li>
+                    <li className="pl-4"><Link href="/#services-market-access" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Market Access Strategy</Link></li>
                     <li className="font-semibold text-[var(--secondary-color)] mt-4">View All Services</li>
                     <li className="pl-4"><Link href="/our-services" className="hover:text-[var(--primary-color)] text-gray-600 block py-1">Services Overview</Link></li>
                   </ul>
@@ -110,12 +110,12 @@ const Header = () => {
               <li>
                 <div className="block hover:text-[var(--primary-color)] mb-2">Services</div>
                 <ul className="pl-4 space-y-2">
-                  <li><a href="/#services-engineering" className="block hover:text-[var(--primary-color)] text-gray-600">Engineering Solution Services</a></li>
-                  <li><a href="/#services-certifications" className="block hover:text-[var(--primary-color)] text-gray-600">Global Product Certifications</a></li>
-                  <li><a href="/#services-roadmaps" className="block hover:text-[var(--primary-color)] text-gray-600">Compliance Roadmaps</a></li>
-                  <li><a href="/#services-integration" className="block hover:text-[var(--primary-color)] text-gray-600">Process Integration</a></li>
-                  <li><a href="/#services-advisory" className="block hover:text-[var(--primary-color)] text-gray-600">Regulatory Advisory Services</a></li>
-                  <li><a href="/#services-market-access" className="block hover:text-[var(--primary-color)] text-gray-600">Market Access Strategy</a></li>
+                  <li><Link href="/#services-engineering" className="block hover:text-[var(--primary-color)] text-gray-600">Engineering Solution Services</Link></li>
+                  <li><Link href="/#services-certifications" className="block hover:text-[var(--primary-color)] text-gray-600">Global Product Certifications</Link></li>
+                  <li><Link href="/#services-roadmaps" className="block hover:text-[var(--primary-color)] text-gray-600">Compliance Roadmaps</Link></li>
+                  <li><Link href="/#services-integration" className="block hover:text-[var(--primary-color)] text-gray-600">Process Integration</Link></li>
+                  <li><Link href="/#services-advisory" className="block hover:text-[var(--primary-color)] text-gray-600">Regulatory Advisory Services</Link></li>
+                  <li><Link href="/#services-market-access" className="block hover:text-[var(--primary-color)] text-gray-600">Market Access Strategy</Link></li>
                 </ul>
               </li>
               <li><Link href="/about-us" className="block hover:text-[var(--primary-color)]">About Us</Link></li>

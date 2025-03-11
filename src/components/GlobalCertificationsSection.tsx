@@ -12,10 +12,10 @@ const GlobalCertificationsSection = () => {
               At CertiPath Compliance, we transform the complex certification journey into a strategic advantage. Our specialized approach identifies the most efficient pathways to compliance, reducing time-to-market while ensuring your products meet all necessary standards.
             </p>
             <p className="text-gray-700 mb-4">
-              We don't just manage certifications—we optimize the entire process. By coordinating testing requirements across multiple standards and leveraging our established relationships with certification bodies, we minimize redundant testing and streamline documentation.
+              We don&apos;t just manage certifications—we optimize the entire process. By coordinating testing requirements across multiple standards and leveraging our established relationships with certification bodies, we minimize redundant testing and streamline documentation.
             </p>
             <p className="text-gray-700">
-              Our global network spans more than 200 countries, providing you with localized expertise wherever you need it. With decades of combined experience across our team, we've developed proven methodologies that make certification predictable, efficient, and hassle-free.
+              Our global network spans more than 200 countries, providing you with localized expertise wherever you need it. With decades of combined experience across our team, we&apos;ve developed proven methodologies that make certification predictable, efficient, and hassle-free.
             </p>
             
             <div className="mt-8 text-center">

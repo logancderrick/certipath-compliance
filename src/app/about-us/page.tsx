@@ -1,4 +1,4 @@
-export default function AboutUs() {
+export default function AboutUsPage() {
   return (
     <div className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -8,7 +8,7 @@ export default function AboutUs() {
           <div className="bg-white rounded-lg shadow-md p-8 mb-12">
             <h2 className="text-2xl font-bold mb-6">Our Mission</h2>
             <p className="text-gray-700 mb-4">
-              At CertiPath Compliance, we're committed to making the complex world of product certifications simpler, faster, and more reliable for your business, wherever you operate globally.
+              At CertiPath Compliance, we&apos;re committed to making the complex world of product certifications simpler, faster, and more reliable for your business, wherever you operate globally.
             </p>
             <p className="text-gray-700">
               Our mission is to provide comprehensive regulatory compliance services that enable manufacturers to navigate global certification requirements efficiently, allowing them to focus on what they do best - creating innovative products.
