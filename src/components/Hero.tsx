@@ -24,7 +24,7 @@ const Hero = () => {
   return (
     <div className="relative bg-[var(--secondary-color)] text-white">
       <div className="container mx-auto px-4 py-16 md:py-24">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="max-w-2xl">
             <h1 className="text-3xl md:text-5xl font-bold mb-6">
               EXPERT PRODUCT CERTIFICATION SOLUTIONS
@@ -40,27 +40,20 @@ const Hero = () => {
             </Link>
           </div>
 
-          {/* Vertical Certification Marks Carousel */}
-          <div className="hidden lg:block relative w-40 h-[450px] overflow-hidden">
-            <div 
-              className="flex flex-col gap-6 animate-scroll"
-              style={{
-                animation: 'scroll 30s linear infinite',
-              }}
-            >
-              {allItems.map((mark, index) => (
-                <div 
-                  key={`${mark.alt}-${index}`}
-                  className="w-full h-[80px] relative bg-white rounded-lg p-1"
-                >
-                  <Image
-                    src={mark.src}
-                    alt={mark.alt}
-                    fill
-                    className="object-contain p-1"
-                  />
-                </div>
-              ))}
+          {/* Certification Marks Image */}
+          <div className="relative w-full md:w-auto max-w-md">
+            <div className="bg-white rounded-lg p-4 shadow-lg">
+              <Image
+                src="/images/logos/marks-image-generated.png"
+                alt="Global Certification Marks"
+                width={400}
+                height={300}
+                className="object-contain"
+                priority
+              />
+            </div>
+            <div className="absolute -bottom-4 -right-4 bg-[var(--primary-color)] text-white text-sm px-3 py-1 rounded-full shadow-md">
+              Global Compliance
             </div>
           </div>
         </div>
@@ -70,7 +63,7 @@ const Hero = () => {
       <div className="bg-white py-6 lg:hidden">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-8 md:gap-12">
-            {certificationMarks.map((mark) => (
+            {certificationMarks.slice(0, 6).map((mark) => (
               <div key={mark.alt} className="text-center">
                 <div className="w-14 h-14 md:w-16 md:h-16 bg-[var(--gray-medium)] rounded-full flex items-center justify-center mx-auto mb-2">
                   <Image
