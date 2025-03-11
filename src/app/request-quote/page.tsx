@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import type { Metadata } from 'next';
+import { ServiceJsonLd } from '../../components/JsonLd';
 
 // Define the form schema with validation
 const quoteFormSchema = z.object({
@@ -174,6 +176,7 @@ export default function RequestQuote() {
 
   return (
     <div className="py-16 bg-gray-50">
+      <ServiceJsonLd />
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold mb-8 text-center text-[var(--secondary-color)]">Request For Quote</h1>
