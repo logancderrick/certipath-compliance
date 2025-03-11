@@ -18,8 +18,8 @@ const certificationMarks = [
 ];
 
 const Hero = () => {
-  // Double the items to create a seamless loop
-  const allItems = [...certificationMarks, ...certificationMarks];
+  // We no longer need this since we're not using the carousel
+  // const allItems = [...certificationMarks, ...certificationMarks];
   
   return (
     <div className="relative bg-[var(--secondary-color)] text-white">
@@ -80,23 +80,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Add the keyframe animation */}
-      <style jsx global>{`
-        @keyframes scroll {
-          0% {
-            transform: translateY(0);
-          }
-          100% {
-            transform: translateY(-50%);
-          }
-        }
-        .animate-scroll {
-          animation: scroll 30s linear infinite;
-        }
-        .animate-scroll:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
+      {/* We can also remove the keyframe animation since we're not using it anymore */}
     </div>
   );
 };
