@@ -12,7 +12,13 @@ export const metadata: Metadata = {
   description: "Ensuring your products meet global standards, every step of the way. CertiPath Compliance provides comprehensive regulatory compliance services for manufacturers worldwide.",
   keywords: "product certification, regulatory compliance, global standards, CE mark, UL certification, product testing, compliance services",
   icons: {
-    icon: '/images/logos/Certipath Compliance_logo_b5.png',
+    icon: [
+      {
+        url: '/images/logos/Certipath Compliance_logo_b5.png',
+        type: 'image/png',
+      }
+    ],
+    shortcut: '/images/logos/Certipath Compliance_logo_b5.png',
     apple: '/images/logos/Certipath Compliance_logo_b5.png',
   },
   metadataBase: new URL('https://certipath-compliance.com'),

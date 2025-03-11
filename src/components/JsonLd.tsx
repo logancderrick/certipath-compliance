@@ -4,11 +4,11 @@ import { usePathname } from 'next/navigation';
 
 interface JsonLdProps {
   type: 'Organization' | 'LocalBusiness' | 'BreadcrumbList' | 'FAQPage' | 'Service';
-  data: any;
+  data: Record<string, unknown>;
 }
 
 const JsonLd: React.FC<JsonLdProps> = ({ type, data }) => {
-  const pathname = usePathname();
+  // Remove unused pathname variable
   
   // Add @context and @type to the data
   const jsonLdData = {

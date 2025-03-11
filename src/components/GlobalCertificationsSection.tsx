@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 const GlobalCertificationsSection = () => {
   return (
     <section className="py-16 bg-[var(--gray-light)]">

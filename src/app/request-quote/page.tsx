@@ -4,7 +4,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import type { Metadata } from 'next';
 import { ServiceJsonLd } from '../../components/JsonLd';
 
 // Define the form schema with validation
@@ -105,29 +104,31 @@ export default function RequestQuote() {
   const updateCertificationDetails = useCallback((areas: string[] | undefined) => {
     if (!areas) return;
     
-    const newState = { ...showCertificationDetails };
-    
-    // Reset all to false first
-    Object.keys(newState).forEach(key => {
-      newState[key] = false;
+    setShowCertificationDetails((prevState) => {
+      const newState = { ...prevState };
+      
+      // Reset all to false first
+      Object.keys(newState).forEach(key => {
+        newState[key] = false;
+      });
+      
+      // Set selected ones to true
+      areas.forEach(area => {
+        if (area === 'European CE Mark') newState.ce = true;
+        if (area === 'North America') newState.northAmerica = true;
+        if (area === 'China') newState.china = true;
+        if (area === 'India') newState.india = true;
+        if (area === 'Japan') newState.japan = true;
+        if (area === 'Korea') newState.korea = true;
+        if (area === 'Mexico') newState.mexico = true;
+        if (area === 'Russia') newState.russia = true;
+        if (area === 'South America') newState.southAmerica = true;
+        if (area === 'Taiwan') newState.taiwan = true;
+        if (area === 'Australia/New Zeland') newState.australia = true;
+      });
+      
+      return newState;
     });
-    
-    // Set selected ones to true
-    areas.forEach(area => {
-      if (area === 'European CE Mark') newState.ce = true;
-      if (area === 'North America') newState.northAmerica = true;
-      if (area === 'China') newState.china = true;
-      if (area === 'India') newState.india = true;
-      if (area === 'Japan') newState.japan = true;
-      if (area === 'Korea') newState.korea = true;
-      if (area === 'Mexico') newState.mexico = true;
-      if (area === 'Russia') newState.russia = true;
-      if (area === 'South America') newState.southAmerica = true;
-      if (area === 'Taiwan') newState.taiwan = true;
-      if (area === 'Australia/New Zeland') newState.australia = true;
-    });
-    
-    setShowCertificationDetails(newState);
   }, []);
 
   // Watch for changes in certification areas
