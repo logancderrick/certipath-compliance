@@ -10,14 +10,6 @@ type PostHogIdentify = {
   properties?: Record<string, string | number | boolean>;
 };
 
-export const initPostHog = () => {
-  if (typeof window !== 'undefined') {
-    posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY || '', {
-      api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || 'https://app.posthog.com',
-    });
-  }
-};
-
 export const trackEvent = (event: PostHogEvent) => {
   if (typeof window !== 'undefined') {
     posthog.capture(event.name, event.properties);

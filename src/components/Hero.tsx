@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import PostHogClickTracking from './PostHogClickTracking';
 
 const certificationMarks = [
   { src: '/images/marks/ANATELlogo.png', alt: 'ANATEL Certification Mark' },
@@ -32,12 +33,15 @@ const Hero = () => {
             <p className="text-xl md:text-2xl mb-8">
               Streamlining your path to global market access with strategic compliance expertise.
             </p>
-            <Link 
-              href="/request-quote" 
+            <PostHogClickTracking 
+              eventName="quote_button_click" 
+              properties={{ position: "hero" }}
               className="inline-block bg-[var(--primary-color)] text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-[var(--primary-dark)] transition-colors"
             >
-              Request a Quote
-            </Link>
+              <Link href="/request-quote">
+                Request a Quote
+              </Link>
+            </PostHogClickTracking>
           </div>
 
           {/* Certification Marks Image */}

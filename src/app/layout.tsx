@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { OrganizationJsonLd, BreadcrumbJsonLd } from "../components/JsonLd";
+import PostHogProvider from "../components/PostHogProvider";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -77,11 +79,15 @@ export default function RootLayout({
   return (
     <html lang="en-US">
       <body className={inter.className}>
-        <OrganizationJsonLd />
-        <BreadcrumbJsonLd />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <PostHogProvider>
+          <OrganizationJsonLd />
+          <BreadcrumbJsonLd />
+          <Header />
+          <Suspense fallback={<div>Loading...</div>}>
+            <main>{children}</main>
+          </Suspense>
+          <Footer />
+        </PostHogProvider>
       </body>
     </html>
   );
