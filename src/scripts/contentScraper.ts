@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { createArticle, cleanArticleContent, formatExcerpt } from '../lib/firebase/articles';
+import { createArticle, cleanArticleContent, formatExcerpt, getArticleBySlug } from '../lib/firebase/articles';
 import { Timestamp } from 'firebase/firestore';
 import slugify from 'slugify';
 
@@ -27,6 +27,7 @@ interface FirestoreArticle {
   createdAt: Timestamp;
   updatedAt: Timestamp;
   timestamp: number;
+  imageUrl: string;
 }
 
 async function downloadArticles(source: string, baseUrl: string, articleSelector: string): Promise<RawArticle[]> {
@@ -231,6 +232,7 @@ async function downloadArticles(source: string, baseUrl: string, articleSelector
 async function saveArticlesToFirebase(articles: RawArticle[]) {
   console.log(`\n💾 Starting to save ${articles.length} articles to Firebase...`);
   let savedCount = 0;
+  let skipCount = 0;
   let errorCount = 0;
 
   for (const article of articles) {
@@ -238,6 +240,7 @@ async function saveArticlesToFirebase(articles: RawArticle[]) {
       // Basic validation
       if (!article.title || !article.content) {
         console.warn('❌ Skipping article: Missing title or content');
+        skipCount++;
         continue;
       }
 
@@ -248,6 +251,14 @@ async function saveArticlesToFirebase(articles: RawArticle[]) {
         trim: true,
         replacement: '-'
       }).substring(0, 100);
+
+      // Check if article already exists
+      const existingArticle = await getArticleBySlug(slug);
+      if (existingArticle) {
+        console.log(`⏭️ Skipping duplicate article: ${article.title}`);
+        skipCount++;
+        continue;
+      }
 
       // Ensure date is valid
       let date = article.date || new Date().toISOString().split('T')[0];
@@ -286,12 +297,14 @@ async function saveArticlesToFirebase(articles: RawArticle[]) {
         htmlContent: String(cleanHtml),
         createdAt: firestoreTimestamp,
         updatedAt: firestoreTimestamp,
-        timestamp: firestoreTimestamp.seconds
+        timestamp: firestoreTimestamp.seconds,
+        imageUrl: '', // Add empty string as default
       };
 
       // Final validation
       if (!articleData.title || !articleData.content) {
         console.warn('❌ Skipping article: Invalid data after cleaning');
+        skipCount++;
         continue;
       }
 
@@ -324,6 +337,7 @@ async function saveArticlesToFirebase(articles: RawArticle[]) {
   console.log(`\n📊 Summary:`);
   console.log(`Total articles processed: ${articles.length}`);
   console.log(`Successfully saved: ${savedCount}`);
+  console.log(`Skipped duplicates: ${skipCount}`);
   console.log(`Errors: ${errorCount}`);
 }
 
