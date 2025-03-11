@@ -1,35 +1,32 @@
+import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllArticles } from '@/lib/firebase/articles';
+import { formatDate } from '@/lib/utils/date';
+import { getSourceLogo } from '@/lib/utils/source';
 
-// Helper function for consistent date formatting
-function formatDate(dateString: string) {
-  try {
-    const date = new Date(dateString);
-    const year = date.getUTCFullYear();
-    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-    const day = String(date.getUTCDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  } catch {
-    return dateString;
-  }
-}
+export const metadata: Metadata = {
+  title: 'Latest News - CertiPath Compliance',
+  description: 'Stay up to date with the latest compliance and certification news from CertiPath Compliance.',
+};
 
-// Helper function to get logo path based on source
-function getSourceLogo(source: string = '') {
-  const sourceLower = source.toLowerCase();
-  if (sourceLower.includes('ul') || sourceLower.includes('underwriters')) {
-    return '/images/logos/ul-logo.png';
-  }
-  if (sourceLower.includes('compliance') || sourceLower.includes('incompliance')) {
-    return '/images/logos/incompliance-logo.png';
-  }
-  return null;
-}
+const ARTICLES_PER_PAGE = 5;
 
-export default async function NewsPage() {
+export default async function NewsPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const currentPage = Number(searchParams.page) || 1;
   const articles = await getAllArticles();
   
+  // Calculate pagination
+  const totalArticles = articles.length;
+  const totalPages = Math.ceil(totalArticles / ARTICLES_PER_PAGE);
+  const startIndex = (currentPage - 1) * ARTICLES_PER_PAGE;
+  const endIndex = startIndex + ARTICLES_PER_PAGE;
+  const currentArticles = articles.slice(startIndex, endIndex);
+
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section */}
@@ -48,7 +45,7 @@ export default async function NewsPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="grid gap-8">
-            {articles.map((article) => {
+            {currentArticles.map(article => {
               const logoPath = getSourceLogo(article.source);
               
               return (
@@ -92,6 +89,43 @@ export default async function NewsPage() {
               );
             })}
           </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12 flex justify-center gap-2">
+              {currentPage > 1 && (
+                <Link
+                  href={`/news?page=${currentPage - 1}`}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                >
+                  Previous
+                </Link>
+              )}
+              
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                <Link
+                  key={pageNum}
+                  href={`/news?page=${pageNum}`}
+                  className={`px-4 py-2 text-sm font-medium rounded-md ${
+                    pageNum === currentPage
+                      ? 'bg-[var(--primary-color)] text-white'
+                      : 'text-gray-700 bg-white border border-gray-300 hover:bg-gray-50'
+                  }`}
+                >
+                  {pageNum}
+                </Link>
+              ))}
+
+              {currentPage < totalPages && (
+                <Link
+                  href={`/news?page=${currentPage + 1}`}
+                  className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+                >
+                  Next
+                </Link>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
