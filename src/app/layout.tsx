@@ -10,7 +10,8 @@ export const metadata: Metadata = {
   title: "CertiPath Compliance - Global Certification Services",
   description: "Ensuring your products meet global standards, every step of the way. CertiPath Compliance provides comprehensive regulatory compliance services for manufacturers worldwide.",
   icons: {
-    icon: '/images/logos/Certipath Compliance_logo_b4_cropped.png',
+    icon: '/images/logos/Certipath Compliance_logo_b5.png',
+    apple: '/images/logos/Certipath Compliance_logo_b5.png',
   },
 };
 
