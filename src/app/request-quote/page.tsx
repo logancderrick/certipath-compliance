@@ -18,16 +18,13 @@ const quoteFormSchema = z.object({
   address: z.string().optional(),
   
   // Certification Areas
-  certificationAreas: z.array(z.string()).optional(),
-  
-  // Other Certification Areas
-  otherCertificationAreas: z.array(z.string()).optional(),
+  certificationAreas: z.array(z.string()).min(1, { message: 'Please select at least one certification area' }),
   
   // Product Information
   productType: z.string().min(5, { message: 'Product description is required' }),
   powerInput: z.string().optional(),
   clockFrequency: z.string().optional(),
-  environmentalRating: z.string().optional(),
+  environmentalRating: z.string().min(1, { message: 'Environmental rating is required' }),
   modelNumbers: z.string().min(1, { message: 'At least one model number is required' }),
   productWeight: z.string().optional(),
   
@@ -49,7 +46,7 @@ const quoteFormSchema = z.object({
   
   // Additional Information
   comments: z.string().optional(),
-  leadSource: z.string().optional(),
+  leadSource: z.string().min(1, { message: 'Please select how you heard about us' }),
   keyword: z.string().optional()
 });
 
@@ -83,7 +80,6 @@ export default function RequestQuote() {
     resolver: zodResolver(quoteFormSchema),
     defaultValues: {
       certificationAreas: [],
-      otherCertificationAreas: [],
       ceSpecific: [],
       northAmericaSpecific: [],
       chinaSpecific: [],
@@ -98,7 +94,7 @@ export default function RequestQuote() {
     }
   });
 
-  const watchCertificationAreas = watch('otherCertificationAreas');
+  const watchCertificationAreas = watch('certificationAreas');
 
   // Toggle certification detail sections based on selected areas
   const updateCertificationDetails = useCallback((areas: string[] | undefined) => {
@@ -294,10 +290,9 @@ export default function RequestQuote() {
                   ></textarea>
                 </div>
                 
-                <h2 className="text-xl font-bold mb-6 text-[var(--secondary-color)] border-b pb-2">Certification Areas</h2>
+                <h2 className="text-xl font-bold mb-6 text-[var(--secondary-color)] border-b pb-2">Certification Areas *</h2>
                 
                 <div className="mb-8">
-                  <label className="block text-gray-700 text-sm font-medium mb-4">Other Areas of Certification *</label>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
                     {[
                       'CB Certification',
@@ -318,13 +313,16 @@ export default function RequestQuote() {
                           type="checkbox"
                           id={`area-${area}`}
                           value={area}
-                          {...register('otherCertificationAreas')}
+                          {...register('certificationAreas')}
                           className="mr-2"
                         />
                         <label htmlFor={`area-${area}`} className="text-gray-700">{area}</label>
                       </div>
                     ))}
                   </div>
+                  {errors.certificationAreas && (
+                    <p className="text-red-500 text-sm mt-1">{errors.certificationAreas.message}</p>
+                  )}
                 </div>
                 
                 {/* Specific certification sections */}
@@ -610,7 +608,7 @@ export default function RequestQuote() {
                 </div>
                 
                 <div className="mb-6">
-                  <label className="block text-gray-700 text-sm font-medium mb-2">Environmental Rating</label>
+                  <label className="block text-gray-700 text-sm font-medium mb-2">Environmental Rating *</label>
                   <div className="space-y-2">
                     <div className="flex items-center">
                       <input
@@ -633,6 +631,9 @@ export default function RequestQuote() {
                       <label htmlFor="envRating2" className="text-gray-700">Indoor/Outdoor</label>
                     </div>
                   </div>
+                  {errors.environmentalRating && (
+                    <p className="text-red-500 text-sm mt-1">{errors.environmentalRating.message}</p>
+                  )}
                 </div>
                 
                 <div className="mb-6">
@@ -685,7 +686,7 @@ export default function RequestQuote() {
                   <select
                     id="leadSource"
                     {...register('leadSource')}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.leadSource ? 'border-red-500' : 'border-gray-300'}`}
                   >
                     <option value="">Please Choose</option>
                     <option value="Google Ad">Google Ad</option>
@@ -699,6 +700,9 @@ export default function RequestQuote() {
                     <option value="Magazine/Journal">Magazine/Journal</option>
                     <option value="Other">Other</option>
                   </select>
+                  {errors.leadSource && (
+                    <p className="text-red-500 text-sm mt-1">{errors.leadSource.message}</p>
+                  )}
                 </div>
                 
                 <div className="mb-8">

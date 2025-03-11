@@ -218,7 +218,7 @@ const Header = () => {
                 />
               </Link>
             </div>
-            <ul className="space-y-4">
+            <ul className="space-y-4 text-gray-700">
               <li>
                 <PostHogClickTracking 
                   eventName="mobile_nav_click" 
@@ -229,7 +229,7 @@ const Header = () => {
                 </PostHogClickTracking>
               </li>
               <li>
-                <div className="block hover:text-[var(--primary-color)] mb-2">Services</div>
+                <div className="block font-medium hover:text-[var(--primary-color)] mb-2">Services</div>
                 <ul className="pl-4 space-y-2">
                   <li>
                     <PostHogClickTracking 

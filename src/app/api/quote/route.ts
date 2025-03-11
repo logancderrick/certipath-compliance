@@ -43,12 +43,6 @@ export async function POST(request: Request) {
       emailContent += `Selected areas: ${certificationAreas.join(', ')}\n`;
     }
     
-    // Add Other Certification Areas section
-    const otherCertificationAreas = formData.getAll('otherCertificationAreas');
-    if (otherCertificationAreas.length > 0) {
-      emailContent += `Other certification areas: ${otherCertificationAreas.join(', ')}\n`;
-    }
-    
     // Add specific certification details
     const specificCertifications = [
       'ceSpecific', 'northAmericaSpecific', 'chinaSpecific', 'indiaSpecific', 
