@@ -12,12 +12,16 @@ export const metadata: Metadata = {
 
 const ARTICLES_PER_PAGE = 5;
 
+type SearchParams = { [key: string]: string | string[] | undefined };
+
 export default async function NewsPage({
   searchParams,
 }: {
-  searchParams: { page?: string };
+  searchParams: Promise<SearchParams>;
 }) {
-  const currentPage = Number(searchParams.page) || 1;
+  const resolvedParams = await searchParams;
+  const page = resolvedParams.page;
+  const currentPage = Number(page) || 1;
   const articles = await getAllArticles();
   
   // Calculate pagination
