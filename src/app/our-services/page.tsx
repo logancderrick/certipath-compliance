@@ -1,41 +1,33 @@
-import Link from 'next/link';
-
 const services = [
   {
     id: 'engineering',
     title: 'Engineering Solution Services',
     description: 'Tailored technical support for product development and compliance design.',
-    link: '/our-services/engineering-solutions'
   },
   {
     id: 'certifications',
     title: 'Global Product Certifications',
     description: 'Assistance with certifications across international markets (e.g., BIS, UL, CSA, CE, etc.).',
-    link: '/our-services/global-certifications'
   },
   {
     id: 'roadmaps',
     title: 'Compliance Roadmaps',
     description: 'Strategic planning to ensure your products meet regulatory requirements at every stage.',
-    link: '/our-services/compliance-roadmaps'
   },
   {
     id: 'integration',
     title: 'Process Integration',
     description: 'Linking compliance procedures seamlessly into your existing business processes.',
-    link: '/our-services/process-integration'
   },
   {
     id: 'advisory',
     title: 'Regulatory Advisory Services',
     description: 'Expert guidance on regulatory requirements, updates, and best practices for various regions.',
-    link: '/our-services/regulatory-advisory'
   },
   {
     id: 'market-access',
     title: 'Market Access Strategy',
     description: 'Support to navigate market entry requirements and secure certifications for new regions.',
-    link: '/our-services/market-access'
   }
 ];
 
