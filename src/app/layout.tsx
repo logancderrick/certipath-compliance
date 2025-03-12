@@ -6,6 +6,7 @@ import Footer from "../components/Footer";
 import { OrganizationJsonLd, BreadcrumbJsonLd } from "../components/JsonLd";
 import PostHogProvider from "../components/PostHogProvider";
 import { Suspense } from "react";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -78,6 +79,22 @@ export default function RootLayout({
 }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en-US">
+      <head>
+        {/* Google Ads Tag */}
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=AW-974717913"
+          strategy="afterInteractive"
+        />
+        <Script id="google-ads" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-974717913');
+          `}
+        </Script>
+      </head>
       <body className={inter.className}>
         <PostHogProvider>
           <OrganizationJsonLd />

@@ -53,13 +53,7 @@ export default function OurServices() {
             {services.map((service) => (
               <div key={service.id} className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-xl font-bold mb-3">{service.title}</h2>
-                <p className="text-gray-600 mb-4">{service.description}</p>
-                <Link 
-                  href={service.link} 
-                  className="text-blue-600 font-medium hover:text-blue-800 transition-colors"
-                >
-                  Learn more →
-                </Link>
+                <p className="text-gray-600">{service.description}</p>
               </div>
             ))}
           </div>

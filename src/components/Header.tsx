@@ -85,82 +85,14 @@ const Header = () => {
           {/* Main Navigation */}
           <nav className="hidden lg:block">
             <ul className="flex space-x-8 text-sm font-medium items-center">
-              <li className="group relative">
-                <button className="hover:text-[var(--primary-color)] flex items-center focus:outline-none py-2">
-                  Services
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-4 w-4 ml-1">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
-                <div className="absolute left-0 top-[calc(100%+0.5rem)] w-64 bg-white rounded-lg shadow-lg py-4 px-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                  <ul className="space-y-2">
-                    <li className="font-semibold text-[var(--secondary-color)]">Our Services</li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "engineering" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/#services-engineering">Engineering Solution Services</Link>
-                      </PostHogClickTracking>
-                    </li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "certifications" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/#services-certifications">Global Product Certifications</Link>
-                      </PostHogClickTracking>
-                    </li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "roadmaps" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/#services-roadmaps">Compliance Roadmaps</Link>
-                      </PostHogClickTracking>
-                    </li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "integration" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/#services-integration">Process Integration</Link>
-                      </PostHogClickTracking>
-                    </li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "advisory" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/#services-advisory">Regulatory Advisory Services</Link>
-                      </PostHogClickTracking>
-                    </li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "market-access" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/#services-market-access">Market Access Strategy</Link>
-                      </PostHogClickTracking>
-                    </li>
-                    <li className="font-semibold text-[var(--secondary-color)] mt-4">View All Services</li>
-                    <li className="pl-4">
-                      <PostHogClickTracking 
-                        eventName="service_nav_click" 
-                        properties={{ service: "overview" }}
-                        className="hover:text-[var(--primary-color)] text-gray-600 block py-1"
-                      >
-                        <Link href="/our-services">Services Overview</Link>
-                      </PostHogClickTracking>
-                    </li>
-                  </ul>
-                </div>
+              <li>
+                <PostHogClickTracking 
+                  eventName="header_nav_click" 
+                  properties={{ link: "services", position: "main" }}
+                  className="hover:text-[var(--primary-color)] py-2 block"
+                >
+                  <Link href="/our-services">Services</Link>
+                </PostHogClickTracking>
               </li>
               <li>
                 <PostHogClickTracking 
@@ -229,63 +161,13 @@ const Header = () => {
                 </PostHogClickTracking>
               </li>
               <li>
-                <div className="block font-medium hover:text-[var(--primary-color)] mb-2">Services</div>
-                <ul className="pl-4 space-y-2">
-                  <li>
-                    <PostHogClickTracking 
-                      eventName="mobile_service_click" 
-                      properties={{ service: "engineering" }}
-                      className="block hover:text-[var(--primary-color)] text-gray-600"
-                    >
-                      <Link href="/#services-engineering">Engineering Solution Services</Link>
-                    </PostHogClickTracking>
-                  </li>
-                  <li>
-                    <PostHogClickTracking 
-                      eventName="mobile_service_click" 
-                      properties={{ service: "certifications" }}
-                      className="block hover:text-[var(--primary-color)] text-gray-600"
-                    >
-                      <Link href="/#services-certifications">Global Product Certifications</Link>
-                    </PostHogClickTracking>
-                  </li>
-                  <li>
-                    <PostHogClickTracking 
-                      eventName="mobile_service_click" 
-                      properties={{ service: "roadmaps" }}
-                      className="block hover:text-[var(--primary-color)] text-gray-600"
-                    >
-                      <Link href="/#services-roadmaps">Compliance Roadmaps</Link>
-                    </PostHogClickTracking>
-                  </li>
-                  <li>
-                    <PostHogClickTracking 
-                      eventName="mobile_service_click" 
-                      properties={{ service: "integration" }}
-                      className="block hover:text-[var(--primary-color)] text-gray-600"
-                    >
-                      <Link href="/#services-integration">Process Integration</Link>
-                    </PostHogClickTracking>
-                  </li>
-                  <li>
-                    <PostHogClickTracking 
-                      eventName="mobile_service_click" 
-                      properties={{ service: "advisory" }}
-                      className="block hover:text-[var(--primary-color)] text-gray-600"
-                    >
-                      <Link href="/#services-advisory">Regulatory Advisory Services</Link>
-                    </PostHogClickTracking>
-                  </li>
-                  <li>
-                    <PostHogClickTracking 
-                      eventName="mobile_service_click" 
-                      properties={{ service: "market-access" }}
-                      className="block hover:text-[var(--primary-color)] text-gray-600"
-                    >
-                      <Link href="/#services-market-access">Market Access Strategy</Link>
-                    </PostHogClickTracking>
-                  </li>
-                </ul>
+                <PostHogClickTracking 
+                  eventName="mobile_nav_click" 
+                  properties={{ link: "services" }}
+                  className="block hover:text-[var(--primary-color)]"
+                >
+                  <Link href="/our-services">Services</Link>
+                </PostHogClickTracking>
               </li>
               <li>
                 <PostHogClickTracking 
