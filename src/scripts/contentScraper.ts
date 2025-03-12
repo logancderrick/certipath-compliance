@@ -30,8 +30,8 @@ interface FirestoreArticle {
   imageUrl: string;
 }
 
-async function downloadArticles(source: string, baseUrl: string, articleSelector: string): Promise<RawArticle[]> {
-  console.log(`\n🔍 Starting to scrape articles from ${source} (${baseUrl})`);
+async function downloadArticles(source: string, baseUrl: string, articleSelector: string, category: string = 'Regulations'): Promise<RawArticle[]> {
+  console.log(`\n🔍 Starting to scrape articles from ${source} (${baseUrl}) - Category: ${category}`);
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const articles: RawArticle[] = [];
@@ -204,7 +204,7 @@ async function downloadArticles(source: string, baseUrl: string, articleSelector
         });
         articles.push({
           ...article,
-          category: 'Regulations', // Default category
+          category,
           source,
           originalUrl: url,
           htmlContent: article.htmlContent
@@ -348,18 +348,41 @@ async function main() {
   const ulArticles = await downloadArticles(
     'UL Solutions',
     'https://www.ul.com/news',
-    'a[href*="/news/"]'
+    'a[href*="/news/"]',
+    'Regulations'
   );
 
-  // In Compliance Magazine articles
-  const inComplianceArticles = await downloadArticles(
+  // In Compliance Magazine - Global Compliance News
+  const inComplianceNewsArticles = await downloadArticles(
     'In Compliance Magazine',
     'https://incompliancemag.com/topics/news/global-compliance-news/',
-    '' // Selector not needed as we're using container-based approach
+    '',
+    'Regulations'
+  );
+
+  // In Compliance Magazine - Testing
+  const inComplianceTestingArticles = await downloadArticles(
+    'In Compliance Magazine',
+    'https://incompliancemag.com/topics/testing/',
+    '',
+    'Testing'
+  );
+
+  // In Compliance Magazine - Standards and Compliance
+  const inComplianceStandardsArticles = await downloadArticles(
+    'In Compliance Magazine',
+    'https://incompliancemag.com/topics/standards-and-compliance/',
+    '',
+    'Standards'
   );
 
   // Save all articles to Firebase
-  await saveArticlesToFirebase([...ulArticles, ...inComplianceArticles]);
+  await saveArticlesToFirebase([
+    ...ulArticles, 
+    ...inComplianceNewsArticles,
+    ...inComplianceTestingArticles,
+    ...inComplianceStandardsArticles
+  ]);
   console.log('\n✨ Content scraper finished!');
 }
 
