@@ -89,7 +89,7 @@ const Header = () => {
                 <PostHogClickTracking 
                   eventName="header_nav_click" 
                   properties={{ link: "services", position: "main" }}
-                  className="hover:text-[var(--primary-color)] py-2 block"
+                  className="text-[var(--gray-dark)] py-2 block"
                 >
                   <Link href="/our-services">Services</Link>
                 </PostHogClickTracking>
@@ -98,7 +98,7 @@ const Header = () => {
                 <PostHogClickTracking 
                   eventName="header_nav_click" 
                   properties={{ link: "about", position: "main" }}
-                  className="hover:text-[var(--primary-color)] py-2 block"
+                  className="text-[var(--gray-dark)] py-2 block"
                 >
                   <Link href="/about-us">About Us</Link>
                 </PostHogClickTracking>
@@ -107,7 +107,7 @@ const Header = () => {
                 <PostHogClickTracking 
                   eventName="header_nav_click" 
                   properties={{ link: "news", position: "main" }}
-                  className="hover:text-[var(--primary-color)] py-2 block"
+                  className="text-[var(--gray-dark)] py-2 block"
                 >
                   <Link href="/news">News</Link>
                 </PostHogClickTracking>
@@ -116,7 +116,7 @@ const Header = () => {
                 <PostHogClickTracking 
                   eventName="header_nav_click" 
                   properties={{ link: "contact", position: "main" }}
-                  className="hover:text-[var(--primary-color)] py-2 block"
+                  className="text-[var(--gray-dark)] py-2 block"
                 >
                   <Link href="/contact-us">Contact Us</Link>
                 </PostHogClickTracking>
