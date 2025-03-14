@@ -60,11 +60,22 @@ export default function ContactUs() {
   };
 
   return (
-    <div className="py-16 bg-gray-50">
-      <div className="container mx-auto px-4">
+    <div className="bg-gray-50 min-h-screen">
+      {/* Hero Section */}
+      <div className="bg-[var(--primary-color)] text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
+            <p className="text-white/80">
+              Get in touch with our team of compliance experts
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center">Contact Us</h1>
-          <p className="text-lg text-gray-700 mb-12 text-center max-w-3xl mx-auto">
+          <p className="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
             Have questions about our services? Ready to start your certification journey? Get in touch with our team of experts.
           </p>
           
@@ -120,7 +131,7 @@ export default function ContactUs() {
                   </div>
                 ) : (
                   <>
-                    <h2 className="text-2xl font-bold mb-6 text-[var(--secondary-color)]">Send us a message</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-gray-900">Send us a message</h2>
                     
                     {submitError && (
                       <div className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-4 mb-6">
@@ -135,7 +146,7 @@ export default function ContactUs() {
                           <input
                             id="name"
                             {...register('name')}
-                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
                           />
                           {errors.name && (
                             <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -147,7 +158,7 @@ export default function ContactUs() {
                           <input
                             id="company"
                             {...register('company')}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                           />
                         </div>
                         
@@ -157,7 +168,7 @@ export default function ContactUs() {
                             id="email"
                             type="email"
                             {...register('email')}
-                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                            className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                           />
                           {errors.email && (
                             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -170,7 +181,7 @@ export default function ContactUs() {
                             id="phone"
                             type="tel"
                             {...register('phone')}
-                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                           />
                         </div>
                       </div>
@@ -181,7 +192,7 @@ export default function ContactUs() {
                           id="message"
                           rows={6}
                           {...register('message')}
-                          className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+                          className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
                         ></textarea>
                         {errors.message && (
                           <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>

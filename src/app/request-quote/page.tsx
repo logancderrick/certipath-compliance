@@ -172,12 +172,23 @@ export default function RequestQuote() {
   };
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="bg-gray-50 min-h-screen">
       <ServiceJsonLd />
-      <div className="container mx-auto px-4">
+      {/* Hero Section */}
+      <div className="bg-[var(--primary-color)] text-white py-12">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-4xl font-bold mb-4">Request For Quote</h1>
+            <p className="text-white/80">
+              Get a customized quote for your certification needs
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-12">
         <div className="max-w-5xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8 text-center text-[var(--secondary-color)]">Request For Quote</h1>
-          <p className="text-lg text-gray-700 mb-12 text-center max-w-3xl mx-auto">
+          <p className="text-lg text-gray-700 mb-12 max-w-3xl mx-auto">
             Fill out the form below to request a customized quote for your certification needs. Our team will review your requirements and get back to you promptly.
           </p>
           
@@ -203,7 +214,7 @@ export default function RequestQuote() {
               )}
               
               <form onSubmit={handleSubmit(onSubmit)}>
-                <h2 className="text-xl font-bold mb-6 text-[var(--secondary-color)] border-b pb-2">General Information</h2>
+                <h2 className="text-xl font-bold mb-6 text-gray-900 border-b pb-2">General Information</h2>
                 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                   <div>
@@ -212,7 +223,7 @@ export default function RequestQuote() {
                       type="text"
                       id="name"
                       {...register('name')}
-                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
                     />
                     {errors.name && (
                       <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
@@ -225,7 +236,7 @@ export default function RequestQuote() {
                       type="text"
                       id="title"
                       {...register('title')}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                     />
                   </div>
                   
@@ -235,7 +246,7 @@ export default function RequestQuote() {
                       type="text"
                       id="company"
                       {...register('company')}
-                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.company ? 'border-red-500' : 'border-gray-300'}`}
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.company ? 'border-red-500' : 'border-gray-300'}`}
                     />
                     {errors.company && (
                       <p className="text-red-500 text-sm mt-1">{errors.company.message}</p>
@@ -248,7 +259,7 @@ export default function RequestQuote() {
                       type="email"
                       id="email"
                       {...register('email')}
-                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
                     />
                     {errors.email && (
                       <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -261,7 +272,7 @@ export default function RequestQuote() {
                       type="tel"
                       id="phone"
                       {...register('phone')}
-                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
+                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.phone ? 'border-red-500' : 'border-gray-300'}`}
                     />
                     {errors.phone && (
                       <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
@@ -274,7 +285,7 @@ export default function RequestQuote() {
                       type="url"
                       id="website"
                       {...register('website')}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                     />
                   </div>
                 </div>
@@ -285,12 +296,12 @@ export default function RequestQuote() {
                     id="address"
                     {...register('address')}
                     rows={3}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                     placeholder="Street Address, City, State, ZIP, Country"
                   ></textarea>
                 </div>
                 
-                <h2 className="text-xl font-bold mb-6 text-[var(--secondary-color)] border-b pb-2">Certification Areas *</h2>
+                <h2 className="text-xl font-bold mb-6 text-gray-900 border-b pb-2">Certification Areas *</h2>
                 
                 <div className="mb-8">
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
@@ -328,7 +339,7 @@ export default function RequestQuote() {
                 {/* Specific certification sections */}
                 {showCertificationDetails.ce && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">CE Certification (EU) Specific</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">CE Certification (EU) Specific</h3>
                     <div className="space-y-2">
                       <div className="flex items-center">
                         <input
@@ -367,7 +378,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.northAmerica && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">North America Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">North America Specific Certifications</h3>
                     <div className="space-y-2">
                       {['UL', 'ETL', 'CSA', 'TUV', 'RNA', 'FCC/IC'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -388,7 +399,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.china && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">China Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">China Specific Certifications</h3>
                     <div className="space-y-2">
                       {['CCC', 'CQC', 'SRRC'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -409,7 +420,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.india && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">India Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">India Specific Certifications</h3>
                     <div className="space-y-2">
                       {['BIS', 'WPC', 'TEC'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -430,7 +441,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.japan && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">Japan Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Japan Specific Certifications</h3>
                     <div className="space-y-2">
                       {['VCCI', 'PSE'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -451,7 +462,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.korea && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">Korea Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Korea Specific Certifications</h3>
                     <div className="space-y-2">
                       {['MIC', 'KC'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -472,7 +483,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.mexico && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">Mexico Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Mexico Specific Certifications</h3>
                     <div className="space-y-2">
                       {['NOM', 'IFETEL'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -493,7 +504,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.russia && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">Russia Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Russia Specific Certifications</h3>
                     <div className="space-y-2">
                       <div className="flex items-center">
                         <input
@@ -512,7 +523,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.southAmerica && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">South America Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">South America Specific Certifications</h3>
                     <div className="space-y-2">
                       {['Brazil', 'Argentina'].map((cert) => (
                         <div key={cert} className="flex items-center">
@@ -533,7 +544,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.taiwan && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">Taiwan Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Taiwan Specific Certifications</h3>
                     <div className="space-y-2">
                       <div className="flex items-center">
                         <input
@@ -552,7 +563,7 @@ export default function RequestQuote() {
 
                 {showCertificationDetails.australia && (
                   <div className="mb-8 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <h3 className="text-lg font-bold mb-4 text-[var(--secondary-color)]">Australia/New Zealand Specific Certifications</h3>
+                    <h3 className="text-lg font-bold mb-4 text-gray-900">Australia/New Zealand Specific Certifications</h3>
                     <div className="space-y-2">
                       <div className="flex items-center">
                         <input
@@ -569,7 +580,7 @@ export default function RequestQuote() {
                   </div>
                 )}
                 
-                <h2 className="text-xl font-bold mb-6 text-[var(--secondary-color)] border-b pb-2">Product Information</h2>
+                <h2 className="text-xl font-bold mb-6 text-gray-900 border-b pb-2">Product Information</h2>
                 
                 <div className="mb-6">
                   <label htmlFor="productType" className="block text-gray-700 text-sm font-medium mb-2">Product Type/Description *</label>
@@ -577,7 +588,7 @@ export default function RequestQuote() {
                     id="productType"
                     {...register('productType')}
                     rows={4}
-                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.productType ? 'border-red-500' : 'border-gray-300'}`}
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.productType ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="This should contain detail about the unit's main functions, and how it achieves those functions. This should be a general, but technical description."
                   ></textarea>
                   {errors.productType && (
@@ -592,7 +603,7 @@ export default function RequestQuote() {
                       type="text"
                       id="powerInput"
                       {...register('powerInput')}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                     />
                   </div>
                   
@@ -602,7 +613,7 @@ export default function RequestQuote() {
                       type="text"
                       id="clockFrequency"
                       {...register('clockFrequency')}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                     />
                   </div>
                 </div>
@@ -642,7 +653,7 @@ export default function RequestQuote() {
                     id="modelNumbers"
                     {...register('modelNumbers')}
                     rows={3}
-                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.modelNumbers ? 'border-red-500' : 'border-gray-300'}`}
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.modelNumbers ? 'border-red-500' : 'border-gray-300'}`}
                     placeholder="Please separate model numbers by commas (10 max). Indicate model differences and family groupings."
                   ></textarea>
                   {errors.modelNumbers && (
@@ -656,7 +667,7 @@ export default function RequestQuote() {
                     type="text"
                     id="productWeight"
                     {...register('productWeight')}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                   />
                 </div>
                 
@@ -666,7 +677,7 @@ export default function RequestQuote() {
                     type="date"
                     id="deadline"
                     {...register('deadline')}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                   />
                 </div>
                 
@@ -676,7 +687,7 @@ export default function RequestQuote() {
                     id="comments"
                     {...register('comments')}
                     rows={4}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                     placeholder="Please provide any additional details about your product and certification needs."
                   ></textarea>
                 </div>
@@ -686,7 +697,7 @@ export default function RequestQuote() {
                   <select
                     id="leadSource"
                     {...register('leadSource')}
-                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] ${errors.leadSource ? 'border-red-500' : 'border-gray-300'}`}
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900 ${errors.leadSource ? 'border-red-500' : 'border-gray-300'}`}
                   >
                     <option value="">Please Choose</option>
                     <option value="Google Ad">Google Ad</option>
@@ -711,7 +722,7 @@ export default function RequestQuote() {
                     type="text"
                     id="keyword"
                     {...register('keyword')}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] text-gray-900"
                   />
                 </div>
                 
