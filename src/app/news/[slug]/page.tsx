@@ -37,9 +37,13 @@ export async function generateMetadata({
     };
   }
 
+  const resolvedParams = await params;
   return {
     title: article.title,
     description: article.excerpt,
+    alternates: {
+      canonical: `/news/${resolvedParams.slug}`,
+    },
   };
 }
 

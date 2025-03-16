@@ -26,7 +26,6 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL('https://certipath-compliance.com'),
   alternates: {
-    canonical: '/',
     languages: {
       'en-US': '/',
     },
@@ -64,9 +63,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Add your verification codes here when you have them
-    // google: 'your-google-verification-code',
-    // yandex: 'your-yandex-verification-code',
+    google: process.env.GOOGLE_SITE_VERIFICATION,
   },
 };
 

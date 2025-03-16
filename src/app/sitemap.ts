@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next';
+import { getAllArticles } from '@/lib/firebase/articles';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://certipath-compliance.com';
   
-  // Define your routes
-  const routes = [
+  // Define your static routes
+  const staticRoutes = [
     '',
     '/request-quote',
     '/services',
@@ -14,22 +15,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === '/news' ? 'weekly' : 'monthly' as 'weekly' | 'monthly',
+    changeFrequency: route === '/news' ? ('daily' as const) : ('weekly' as const),
     priority: route === '' ? 1 : route === '/request-quote' ? 0.9 : 0.8,
   }));
 
-  // Add dynamic routes here if needed
-  // For example, if you have blog posts or news articles
-  // const posts = await fetchPosts();
-  // const postRoutes = posts.map(post => ({
-  //   url: `${baseUrl}/news/${post.slug}`,
-  //   lastModified: new Date(post.updatedAt),
-  //   changeFrequency: 'weekly' as 'weekly',
-  //   priority: 0.7,
-  // }));
+  // Get all articles for dynamic routes
+  const articles = await getAllArticles();
+  const articleRoutes = articles.map(article => ({
+    url: `${baseUrl}/news/${article.slug}`,
+    lastModified: new Date(article.date),
+    changeFrequency: 'weekly' as const,
+    priority: 0.7,
+  }));
 
-  return [
-    ...routes,
-    // ...postRoutes,
-  ];
+  return [...staticRoutes, ...articleRoutes];
 } 
