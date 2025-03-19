@@ -97,6 +97,15 @@ const Header = () => {
               <li>
                 <PostHogClickTracking 
                   eventName="header_nav_click" 
+                  properties={{ link: "global-standards", position: "main" }}
+                  className="text-gray-700 py-2 block"
+                >
+                  <Link href="/global-standards">Global Standards</Link>
+                </PostHogClickTracking>
+              </li>
+              <li>
+                <PostHogClickTracking 
+                  eventName="header_nav_click" 
                   properties={{ link: "about", position: "main" }}
                   className="text-gray-700 py-2 block"
                 >
@@ -167,6 +176,15 @@ const Header = () => {
                   className="block hover:text-[var(--primary-color)]"
                 >
                   <Link href="/our-services">Services</Link>
+                </PostHogClickTracking>
+              </li>
+              <li>
+                <PostHogClickTracking 
+                  eventName="mobile_nav_click" 
+                  properties={{ link: "global-standards" }}
+                  className="block hover:text-[var(--primary-color)]"
+                >
+                  <Link href="/global-standards">Global Standards</Link>
                 </PostHogClickTracking>
               </li>
               <li>

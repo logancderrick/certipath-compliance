@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { getAllArticles } from '@/lib/firebase/articles';
+import { globalStandards } from '@/data/global-standards';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://certipath-compliance.com';
@@ -12,6 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/about',
     '/news',
     '/contact',
+    '/global-standards',
   ].map(route => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
@@ -27,6 +29,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));
+  
+  // Get all global standards country pages
+  const standardsRoutes = globalStandards.flatMap(region => 
+    region.countries.map(country => ({
+      url: `${baseUrl}/global-standards/${region.slug}/${country.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
+  );
 
-  return [...staticRoutes, ...articleRoutes];
+  return [...staticRoutes, ...articleRoutes, ...standardsRoutes];
 } 
