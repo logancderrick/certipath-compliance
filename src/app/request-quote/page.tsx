@@ -6,6 +6,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { ServiceJsonLd } from '../../components/JsonLd';
 
+// Add gtag type declaration
+declare global {
+  interface Window {
+    gtag: (
+      command: 'event',
+      action: string,
+      params: {
+        send_to: string;
+        event_callback?: () => void;
+      }
+    ) => void;
+  }
+}
+
 // Define the form schema with validation
 const quoteFormSchema = z.object({
   // General Information
@@ -161,12 +175,11 @@ export default function RequestQuote() {
         throw new Error(result.error || 'Failed to send quote request');
       }
       
-      // Track form conversion with return URL
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        const returnUrl = window.location.href;
-        (window as any).gtag('event', 'conversion', {
-          'send_to': 'AW-974717913/KPHzCM3zyK0aENmH5NAD',
-          'event_callback': function() {
+      // Track form conversion
+      if (typeof window !== 'undefined' && window.gtag) {
+        window.gtag('event', 'conversion', {
+          send_to: 'AW-974717913/KPHzCM3zyK0aENmH5NAD',
+          event_callback: function() {
             console.log('Conversion tracked successfully');
           }
         });
