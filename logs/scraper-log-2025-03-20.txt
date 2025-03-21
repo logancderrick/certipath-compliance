@@ -1,0 +1,14 @@
+[2025-03-20 03:00:02] Starting Content Scraper
+[2025-03-20 03:00:02] Changed directory to C:\Users\Logan\Nextcloud\Coding\projects\certipath-compliance
+[2025-03-20 03:00:02] Running content scraper...
+[2025-03-20 03:00:05] TypeError: Unknown file extension ".ts" for C:\Users\Logan\Nextcloud\Coding\projects\certipath-compliance\src\scripts\contentScraper.ts
+[2025-03-20 03:00:05]     at Object.getFileProtocolModuleFormat [as file:] (node:internal/modules/esm/get_format:219:9)
+[2025-03-20 03:00:05]     at defaultGetFormat (node:internal/modules/esm/get_format:245:36)
+[2025-03-20 03:00:05]     at defaultLoad (node:internal/modules/esm/load:120:22)
+[2025-03-20 03:00:05]     at async ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:514:32)
+[2025-03-20 03:00:05]     at async ModuleJob._link (node:internal/modules/esm/module_job:115:19) {
+[2025-03-20 03:00:05]   code: 'ERR_UNKNOWN_FILE_EXTENSION'
+[2025-03-20 03:00:05] }
+[2025-03-20 03:00:05] Content scraper completed successfully
+[2025-03-20 03:00:05] Content scraper process finished
+[2025-03-20 03:00:05] ----------------------------------------

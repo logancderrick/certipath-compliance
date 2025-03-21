@@ -161,6 +161,17 @@ export default function RequestQuote() {
         throw new Error(result.error || 'Failed to send quote request');
       }
       
+      // Track form conversion with return URL
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        const returnUrl = window.location.href;
+        (window as any).gtag('event', 'conversion', {
+          'send_to': 'AW-974717913/KPHzCM3zyK0aENmH5NAD',
+          'event_callback': function() {
+            console.log('Conversion tracked successfully');
+          }
+        });
+      }
+      
       setSubmitSuccess(true);
       reset();
     } catch (error) {
